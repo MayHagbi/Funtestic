@@ -1,3 +1,37 @@
 <resources>
     <string name="app_name">Funtestic</string>
+    <string name="number_of_question_1">שאלה 1</string>
+    <string name="number_of_question_2">שאלה 2</string>
+    <string name="number_of_question_3">שאלה 3</string>
+    <string name="number_of_question_4">שאלה 4</string>
+    <string name="number_of_question_5">שאלה 5</string>
+    <string name="number_of_question_6">שאלה 6</string>
+    <string name="number_of_question_7">שאלה 7</string>
+    <string name="number_of_question_8">שאלה 8</string>
+    <string name="number_of_question_9">שאלה 9</string>
+    <string name="number_of_question_10">שאלה 10</string>
+    <string name="number_of_question_11">שאלה 11</string>
+    <string name="number_of_question_12">שאלה 12</string>
+    <string name="number_of_question_13">שאלה 13</string>
+    <string name="question_1">האם הילד שלך חווה קשיים להבין כיצד אנשים סביבו מרגישים בעת שיחה ?</string>
+    <string name="question_2">האם הילד שלך מתקשה לעבוד ולהתנהל עם קבוצה ?</string>
+    <string name="question_3">האם הילד שלך מתקשה לפתח קשרים חברתיים עם ילדים אחרים ?</string>
+    <string name="question_4">האם הילד שלך נעשה עצבני, חסר סבלנות או חוסם את אוזניו כאשר יש רעשי סביבה (למשל אנשים שמדברים בקול רם) ?</string>
+    <string name="question_5">האם הילד שלך נעשה עצבני כאשר שגרת היום לה היה רגיל השתנתה לפתע ?</string>
+    <string name="question_6">האם הילד שלך מדבר לאט מאוד ונותן תשובות לא קשורות לשאלות ?</string>
+    <string name="question_7">האם הילד שלך לא מגיב כאשר קוראים בשמו או נמנע מקשר עין ?</string>
+    <string name="question_8">האם הילד שלך לא משחק במשחקי העמדת פנים עם ילדים אחרים ?</string>
+    <string name="question_9">האם לילד שלך יש הרגלים אובססיביים לדבר מסוים ?</string>
+    <string name="question_10">האם הילד שלך רגיש לריחות, טעם או מגע? (למשל נעשה מאוד עצבני בעקבות מגע או ריח מסוים)</string>
+    <string name="question_11">האם הילד שלך מתחמק ממגע פיזי ?</string>
+    <string name="question_12">האם הילד שלך מציג מודעות נמוכה למצבים מסוכנים ?</string>
+    <string name="question_13">האם הילד שלך מתנהג בצורה שאינה מנומסת? (חסר טאקט)</string>
+    <string name="answer_1">לעולם לא</string>
+    <string name="answer_2">לעיתים נדירות</string>
+    <string name="answer_3">לפעמים</string>
+    <string name="answer_4">לעיתים קרובות</string>
+    <string name="answer_5">לעיתים קרובות מאוד</string>
+    <string name="next">הבא</string>
+    <string name="previous">הקודם</string>
+    <string name="end_quiz">סיים ושלח</string>
 </resources>

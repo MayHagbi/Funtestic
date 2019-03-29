@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.funtestic">
 
     <application
@@ -11,13 +10,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activities.quiz.Question13Activity"></activity>
+        <activity android:name=".activities.quiz.Question12Activity" />
+        <activity android:name=".activities.quiz.Question11Activity" />
+        <activity android:name=".activities.quiz.Question10Activity" />
+        <activity android:name=".activities.quiz.Question9Activity" />
+        <activity android:name=".activities.quiz.Question8Activity" />
+        <activity android:name=".activities.quiz.Question7Activity" />
+        <activity android:name=".activities.quiz.Question6Activity" />
+        <activity android:name=".activities.quiz.Question5Activity" />
+        <activity android:name=".activities.quiz.Question4Activity" />
+        <activity android:name=".activities.quiz.Question3Activity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.quiz.Question1Activity" />
+        <activity android:name=".activities.quiz.Question2Activity" />
     </application>
 
 </manifest>

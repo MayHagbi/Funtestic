@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.quiz.Question9Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layoutDirection="rtl">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/number_of_question_9"
+            android:textSize="23sp"
+            android:layout_marginBottom="30dp"
+            android:id="@+id/Question9_text"/>
+
+
+        <TextView
+            android:id="@+id/question9"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="30dp"
+            android:padding="10dp"
+            android:text="@string/question_9"
+            android:textDirection="rtl"
+            android:textSize="20sp" />
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/answer_1"
+                android:background="@android:color/background_light"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/question9_choice1"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/answer_2"
+                android:background="@android:color/background_light"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/question9_choice2"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/answer_3"
+                android:background="@android:color/background_light"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/question9_choice3"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/answer_4"
+                android:background="@android:color/background_light"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/question9_choice4"/>
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:text="@string/answer_5"
+                android:background="@android:color/background_light"
+                android:textColor="@android:color/black"
+                android:padding="8dp"
+                android:layout_marginBottom="24dp"
+                android:id="@+id/question9_choice5"/>
+
+        </RadioGroup>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/next"
+                android:onClick="openQuestion10Activity"
+                android:id="@+id/next9"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/previous"
+                android:onClick="openQuestion8Activity"
+                android:id="@+id/previous9"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
