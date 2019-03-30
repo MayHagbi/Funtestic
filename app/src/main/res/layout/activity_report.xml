@@ -10,7 +10,7 @@
     android:paddingTop="0dp"
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
-    tools:context=".MainActivity">
+    tools:context=".activities.ReportActivity">
 
     <TextView
         android:id="@+id/reportNameTextView"
