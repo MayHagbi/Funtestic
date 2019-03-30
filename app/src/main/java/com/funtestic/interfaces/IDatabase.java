@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public interface IDatabase {
 
     //Get User by ID
-    public User getParentById(int id);
+    public User getUserById(int id);
 
     //Get child by ID
     public Child getChildById(int id);
 
-    //Get all parent children
+    //Get all User children
     public ArrayList<Child> getUserChildren(int id);
 
     //Add new user to the database
