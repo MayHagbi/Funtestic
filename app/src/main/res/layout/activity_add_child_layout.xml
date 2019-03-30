@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.child.AddChildActivity">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="199dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_name"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorAccent"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/etAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="338dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_age"
+        android:inputType="number"
+        android:textColorHint="@color/colorAccent"
+        tools:targetApi="o" />
+
+    <EditText
+        android:id="@+id/etID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="107dp"
+        android:layout_marginLeft="107dp"
+        android:layout_marginTop="270dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/enter_id"
+        android:inputType="number"
+        android:textColorHint="@color/colorAccent"
+        tools:targetApi="o" />
+
+    <Spinner
+        android:id="@+id/GenderSpinner"
+        android:layout_width="214dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+
+        android:layout_marginTop="420dp" />
+
+    <Button
+        android:id="@+id/btnSubChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="529dp"
+        android:background="@drawable/button_selector"
+        android:text="@string/submit" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@android:style/Widget.DeviceDefault.TextView.SpinnerItem"
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginTop="132dp"
+        android:text="@string/child_details"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="218dp"
+        android:text="@string/name"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="275dp"
+        android:text="@string/ID"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginTop="346dp"
+        android:text="@string/age"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="431dp"
+        android:text="@string/gender"
+        android:textSize="17sp" />
+
+</RelativeLayout>
