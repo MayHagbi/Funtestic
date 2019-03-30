@@ -1,4 +1,4 @@
-package com.funtestic.activities;
+package com.funtestic.activities.report;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

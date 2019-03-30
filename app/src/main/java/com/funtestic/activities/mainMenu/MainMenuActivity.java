@@ -1,4 +1,4 @@
-package com.funtestic.activities;
+package com.funtestic.activities.mainMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.funtestic.R;
+import com.funtestic.activities.MainActivity;
+import com.funtestic.activities.report.ReportActivity;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
