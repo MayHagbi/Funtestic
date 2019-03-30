@@ -1,9 +1,9 @@
-package com.funtestic.models.test;
+package com.funtestic.models.waitToShlomi;
 
 import java.util.*; 
 
 
-public class Parent extends Person {
+public class User extends Person {
 
 
 	private String email;
@@ -18,7 +18,7 @@ public class Parent extends Person {
 		return this.email ;
 	}
 
-	public Parent() throws Exception {
+	public User() throws Exception {
 		super();
 		setEmail("no@email.com");
 		this.childId=null;
@@ -26,7 +26,7 @@ public class Parent extends Person {
 
 	}
 
-	public Parent(String id , String name , String email , String password) throws Exception  {
+	public User(String id , String name , String email , String password) throws Exception  {
 		super(id,name);
 		setEmail(email);
 		this.password=password;

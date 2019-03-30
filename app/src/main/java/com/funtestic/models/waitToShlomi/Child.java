@@ -1,9 +1,8 @@
-package com.funtestic.models.test;
+package com.funtestic.models.waitToShlomi;
 
 import android.support.annotation.NonNull;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Child extends Person implements Serializable {
 
