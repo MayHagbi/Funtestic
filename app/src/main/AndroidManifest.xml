@@ -21,6 +21,8 @@
         <activity android:name=".activities.quiz.Question5Activity" />
         <activity android:name=".activities.quiz.Question4Activity" />
         <activity android:name=".activities.quiz.Question3Activity" />
+		<activity android:name=".activities.child.AddChildActivity" />
+        <activity android:name=".activities.child.SelectChildActivity" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
