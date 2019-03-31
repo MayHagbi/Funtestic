@@ -1,7 +1,7 @@
 package com.funtestic.interfaces;
 
 import com.funtestic.models.Child;
-import com.funtestic.models.waitToShlomi.User;
+import com.funtestic.models.User;
 
 import java.util.ArrayList;
 
