@@ -1,4 +1,4 @@
-package com.funtestic.models.waitToShlomi;
+package com.funtestic.models;
 
 import java.util.*; 
 
@@ -10,21 +10,6 @@ public class User extends Person {
 	private List<String> childId;//list of child ids
 	private String password;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getEmail() {
-		return this.email ;
-	}
-
-	public User() throws Exception {
-		super();
-		setEmail("no@email.com");
-		this.childId=null;
-		this.password="0000";
-
-	}
 
 	public User(String id , String name , String email , String password) throws Exception  {
 		super(id,name);
@@ -33,6 +18,17 @@ public class User extends Person {
 		this.childId= new ArrayList<String>();
 
 	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getEmail() {
+		return this.email ;
+	}
+
 
 	public void addChild(String id) throws Exception {
 		if(id.matches("[0-9]+") || id.length()==8) {
@@ -44,8 +40,8 @@ public class User extends Person {
 
 	}
 
+
 	public void removeChild(String id) {
 		//TODO
 	}
-	
 }

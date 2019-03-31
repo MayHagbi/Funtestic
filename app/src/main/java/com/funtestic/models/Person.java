@@ -1,10 +1,19 @@
-package com.funtestic.models.waitToShlomi;
+package com.funtestic.models;
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
 	
 	private String id ;
 	private String name ;
-	
+
+
+	public Person(String id , String name) throws Exception {
+		setName(name);
+		setId(id);
+	}
+
+
 	public String getId() {
 		return this.id ;
 	}
@@ -27,22 +36,4 @@ public abstract class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	public Person() throws Exception {
-		setName("unknow");
-		setId("12345678");
-		
-	}
-
-	
-	public Person(String id , String name) throws Exception {
-		setName(name);
-		setId(id);
-	}
-	
-	
-	
-	
-	
 }
