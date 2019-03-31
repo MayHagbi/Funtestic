@@ -54,11 +54,16 @@ public class ChildListAdapter extends ArrayAdapter<Child> implements Filterable 
         //get the child information
         String name = getItem(position).getName();
         String gender = getItem(position).getGender();
-        int age = getItem(position).getAge();
-        int id = getItem(position).getId();
+        String age = getItem(position).getAge();
+        String id = getItem(position).getId();
 
         //Create the child object with the information
-        Child child = new Child(name,gender,age,id);
+        Child child = null;
+        try {
+            child = new Child(name,gender,age,id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //create the view result for showing the animation
         final View result;
@@ -92,7 +97,7 @@ public class ChildListAdapter extends ArrayAdapter<Child> implements Filterable 
 
         holder.name.setText(child.getName());
         holder.gender.setText(child.getGender());
-        holder.age.setText(Integer.toString(child.getAge()));
+        holder.age.setText(child.getAge());
 
 
         return convertView;
