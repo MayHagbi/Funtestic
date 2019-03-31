@@ -3,6 +3,7 @@ package com.funtestic.activities.child;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,16 +44,22 @@ public class AddChildActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (etAge.getText().toString().length()!=0 && etID.getText().toString().length()!=0 && etName.getText().toString().length()!=0) {
                     Intent intent = new Intent(AddChildActivity.this, SelectChildActivity.class);
-                    Child child = new Child();
-                    child.setName(etName.getText().toString());
-                    child.setGender(genderSpinner.getSelectedItem().toString());
-                    child.setAge(Integer.parseInt(etAge.getText().toString()));
-                    child.setId(Integer.parseInt(etID.getText().toString()));
+                    Child child = null;
 
+                    try {
+                        String name = etName.getText().toString();
+                        String gender = genderSpinner.getSelectedItem().toString();
+                        String age = etAge.getText().toString();
+                        String id =  etID.getText().toString();
+                        child = new Child(name, gender, age, id);
 
+                        intent.putExtra("child", child);
+                        setResult(RESULT_OK, intent);
 
-                    intent.putExtra("child", child);
-                    setResult(RESULT_OK, intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     finish();
                 }
             }
