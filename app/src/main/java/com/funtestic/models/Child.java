@@ -2,7 +2,6 @@ package com.funtestic.models;
 
 import android.support.annotation.NonNull;
 
-import java.io.Serializable;
 
 public class Child extends Person {
 
