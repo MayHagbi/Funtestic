@@ -3,4 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+	
+	<color name="colorPrimaryShlomi">#B6D466</color>
+    <color name="colorPrimaryDarkShlomi">#838383</color>
+    <color name="colorAccentShlomi">#CFE55B</color>
+    <color name="coloLiteGray">#EFEFEF</color>
+    <color name="coloveryLiteGray">#D3D3D3</color>
+
+    <drawable name="green_color">#CFE55B</drawable>
+    <drawable name="green_color2">#B6D466</drawable>
 </resources>

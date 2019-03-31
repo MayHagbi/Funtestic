@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp"
+    tools:context=".activities.report.ReportActivity">
+
+    <TextView
+        android:id="@+id/reportNameTextView"
+        android:layout_width="353dp"
+        android:layout_height="68dp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/reportChooseChildTextView"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:paddingRight="0dp"
+        android:text="      בחר ילד"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="65dp" />
+
+    <Spinner
+        android:id="@+id/reportChooseChildSpinner"
+        android:layout_width="364dp"
+        android:layout_height="54dp"
+        tools:layout_editor_absoluteX="6dp"
+        tools:layout_editor_absoluteY="106dp" />
+
+
+    <ScrollView
+        android:id="@+id/reportScrollView"
+        android:layout_width="359dp"
+        android:layout_height="519dp"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="163dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/reportTextView"
+                android:layout_width="395dp"
+                android:layout_height="match_parent"
+                android:paddingRight="0dp"
+                android:text=""
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="65dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>

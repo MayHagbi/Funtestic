@@ -34,4 +34,20 @@
     <string name="next">הבא</string>
     <string name="previous">הקודם</string>
     <string name="end_quiz">סיים ושלח</string>
+	<string name="name">שם:</string>
+    <string name="ID">ת.ז.:</string>
+    <string name="age">גיל:</string>
+    <string name="gender">מגדר:</string>
+    <string name="child_details">פרטי הילד:</string>
+    <string name="submit">הוספה</string>
+    <string name="enter_name">הזן את שם הילד כאן</string>
+    <string name="enter_id">הזן את מספר הזהות כאן</string>
+    <string name="enter_age">הזן את גיל הילד כאן</string>
+    <string name="add_child">הוספת ילד חדש</string>
+    <string name="select_child">בחירת ילד</string>
+    <string-array name="genderList">
+        <item>זכר</item>
+        <item>נקבה</item>
+        <item>אחר</item>
+    </string-array>
 </resources>
