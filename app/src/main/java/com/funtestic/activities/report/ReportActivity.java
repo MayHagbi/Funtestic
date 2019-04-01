@@ -47,7 +47,7 @@ public class ReportActivity extends AppCompatActivity {
 
 
         //Setting the name of the Parent.
-        parentName.setText(" שלום "+parent);
+        parentName.setText(R.string.hello+parent);
 
         //filing the spinner with names
         ArrayAdapter<String> adapter =
