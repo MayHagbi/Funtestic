@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.quiz.Question13Activity"></activity>
+        <activity android:name=".activities.quiz.Question13Activity" />
         <activity android:name=".activities.quiz.Question12Activity" />
         <activity android:name=".activities.quiz.Question11Activity" />
         <activity android:name=".activities.quiz.Question10Activity" />
