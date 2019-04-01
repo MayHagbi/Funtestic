@@ -85,25 +85,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.setMessage("בודק פרטי משתמש אנא המתן...");
         progressDialog.show();
 
-        //TODO Search for user name and password in data base
+        //TODO Search for user name and password in data base, Encrypt password with SHA
 
-        /* Task<AuthResult> firebaseTask =  firebaseAuth.signInWithEmailAndPassword(email , password);
 
-        firebaseTask.addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
-            public void onComplete(Task<AuthResult> task){
-                progressDialog.dismiss();
-                //GO TO MAIN ACTIVITY
-                if(task.isSuccessful()){
-
-                    finish();
-                    startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
-
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Could not Login...please try again", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }); */
 
     }
 
