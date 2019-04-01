@@ -21,9 +21,9 @@ import java.util.ArrayList;
 public class SelectChildActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private static final String TAG = "Main";
-    static final int REQUEST_CODE = 0;
+    static final int REQUEST_ADDCHILD = 0;
 
-    private ArrayList<Child> childsList;
+    private ArrayList<Child> childsList;    //TODO get the list from parent
     private ChildListAdapter adapter;
     private ListView mListView;
     private SearchView mSearchView;
@@ -45,7 +45,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         btnAddChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivityForResult(new Intent(SelectChildActivity.this, AddChildActivity.class), REQUEST_CODE);
+                startActivityForResult(new Intent(SelectChildActivity.this, AddChildActivity.class), REQUEST_ADDCHILD);
             }
         });
 
@@ -135,7 +135,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == REQUEST_ADDCHILD) {
             if (resultCode == RESULT_OK) {
                 //TextView incomingName = findViewById(R.id.etIncomingName);
                 //TextView incomingGender = findViewById(R.id.etIncomingGender);
