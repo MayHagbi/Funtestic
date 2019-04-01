@@ -14,10 +14,10 @@ import com.funtestic.R;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    public Button signinBtn;
-    public Button signupBtn;
-    public EditText userName;
-    public EditText userPassword;
+    private Button signinBtn;
+    private Button signupBtn;
+    private EditText userName;
+    private EditText userPassword;
     private ProgressDialog progressDialog;
 
     @Override
