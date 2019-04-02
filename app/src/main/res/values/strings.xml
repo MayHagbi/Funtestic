@@ -56,6 +56,11 @@
     <string name="signup">הרשמה</string>
     <string name="sign_up_here">אין לך משתמש עדיין? הירשם כאן!</string>
     <string name="disclaimer">האפליקציה (“Funtestic”) מספקת אינפורמציה בלבד, היא איננה רפואית או טיפולית ואין להתייחס אליה ככזו על ידי המשתמש. כמו כן, אין להסתמך על אפליקציה זו לצורך דיאגנוזה רפואית או כהמלצה לטיפול רפואי כלשהו. האינפורמציה הניתנת באפליקציה זו לא מהווה תחליף לחוות דעת מומחה בתחום, דיאגנוזה או טיפול. כל התוכן, כולל טקסט, גרפיקה, תמונות ואינפורמציה הנמצא באפליקציה או זמין דרכה מיועד לצורך מידע כללי בלבד.</string>
+    <string name="creating_account">יוצר משתמש...</string>
+    <string name="sign_up_failed">ההרשמה נכשלה</string>
+    <string name="create_account">צור חשבון</string>
+    <string name="already_a_member_login">יש לך כבר חשבון? התחבר</string>
+    <string name="enter_full_name">הזן שם מלא</string>
     <string-array name="genderList">
         <item>זכר</item>
         <item>נקבה</item>
