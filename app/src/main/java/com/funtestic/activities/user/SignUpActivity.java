@@ -65,16 +65,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         btnSignUp.setEnabled(true);
         finish();
         signUpProgressDialog.dismiss();
-//        new android.os.Handler().postDelayed( //TODO: necessary?
-//                new Runnable() {
-//                    public void run() {
-//                        // On complete call either onSignUpSuccess or onSignUpFailed
-//                        // depending on success
-//                        onSignUpSuccess();
-//                        // onSignUpFailed();
-//
-//                    }
-//                }, 3000);
     }
 
     public boolean validate() {
