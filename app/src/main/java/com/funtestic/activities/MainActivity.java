@@ -16,10 +16,10 @@ import com.funtestic.activities.user.SignUpActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    public Button signinBtn;
-    public Button signupBtn;
-    public EditText userName;
-    public EditText userPassword;
+    private Button signinBtn;
+    private Button signupBtn;
+    private EditText userName;
+    private EditText userPassword;
     private ProgressDialog progressDialog;
 
     @Override
@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final boolean isValidPassword(CharSequence target) {
         if(TextUtils.isEmpty(target)){
-            Toast.makeText(this,"אנא הזן סיסמא" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.enter_password, Toast.LENGTH_LONG).show();
             return false;
         }
         if(target.length() < 8){
-            Toast.makeText(this,"הסיסמא שהזנת קצרה מידיי" , Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.password_too_short , Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public final boolean isValidEmail(CharSequence target) {
         if(TextUtils.isEmpty(target)){
-            Toast.makeText(this,"אנא הזן מייל", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.enter_email, Toast.LENGTH_LONG).show();
             return false;
         }
         if(!android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()) {
-            Toast.makeText(this,"המייל שהזנת לא חוקי", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.email_not_valid, Toast.LENGTH_LONG).show();
             return false;
         };
 
@@ -84,28 +84,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
 
 
-        progressDialog.setMessage("בודק פרטי משתמש אנא המתן...");
+        progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
         progressDialog.show();
 
-        //TODO Search for user name and password in data base
+        //TODO Search for user name and password in data base, Encrypt password with SHA
 
-        /* Task<AuthResult> firebaseTask =  firebaseAuth.signInWithEmailAndPassword(email , password);
 
-        firebaseTask.addOnCompleteListener(this, new OnCompleteListener<AuthResult>(){
-            public void onComplete(Task<AuthResult> task){
-                progressDialog.dismiss();
-                //GO TO MAIN ACTIVITY
-                if(task.isSuccessful()){
-
-                    finish();
-                    startActivity(new Intent(getApplicationContext() , StartGameActivity.class));
-
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Could not Login...please try again", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }); */
 
     }
 

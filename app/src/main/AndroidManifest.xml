@@ -8,8 +8,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true">
-        <activity android:name=".activities.quiz.Question13Activity"></activity>
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.quiz.Question13Activity" />
         <activity android:name=".activities.quiz.Question12Activity" />
         <activity android:name=".activities.quiz.Question11Activity" />
         <activity android:name=".activities.quiz.Question10Activity" />
@@ -32,7 +33,6 @@
         </activity>
         <activity android:name=".activities.quiz.Question1Activity" />
         <activity android:name=".activities.quiz.Question2Activity" />
-        <activity android:name=".activities.user.SignUpActivity" />
     </application>
 
 </manifest>

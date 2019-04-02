@@ -1,26 +1,36 @@
 package com.funtestic.interfaces;
 
 import com.funtestic.models.Child;
+import com.funtestic.models.Quiz;
 import com.funtestic.models.User;
 
 import java.util.ArrayList;
 
 public interface IDatabase {
 
-    //Get User by ID
-    public User getUserById(int id);
+    //Get User by email
+    public User getUserByEmail(String email);
 
     //Get child by ID
-    public Child getChildById(int id);
+    public Child getChildById(String id);
 
     //Get all User children
-    public ArrayList<Child> getUserChildren(int id);
+    public ArrayList<Child> getUserChildren(String email);
 
     //Add new user to the database
     public boolean addUserToDb(User user);
 
     //Add new child to the database
     public boolean addChildToDb(Child child);
+
+    //Add quiz to the database
+    public boolean addQuizToDb(Quiz quiz);
+
+    //Get child quiz grades from database
+    public ArrayList<Quiz> getChildQuizGradesFromDb(String id);
+
+    //Send Report To Email
+    public boolean sendReportToEmail(String parentEmail, String childId);
 
 
 
