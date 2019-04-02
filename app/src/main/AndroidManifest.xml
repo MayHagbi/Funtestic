@@ -33,6 +33,7 @@
         </activity>
         <activity android:name=".activities.quiz.Question1Activity" />
         <activity android:name=".activities.quiz.Question2Activity" />
+        <activity android:name=".activities.user.SignUpActivity" />
     </application>
 
 </manifest>
