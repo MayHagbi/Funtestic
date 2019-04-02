@@ -33,7 +33,8 @@
         </activity>
         <activity android:name=".activities.quiz.Question1Activity" />
         <activity android:name=".activities.quiz.Question2Activity" />
-        <activity android:name=".activities.user.SignUpActivity" />
+        <activity android:name=".activities.user.SignUpActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
     </application>
 
 </manifest>
