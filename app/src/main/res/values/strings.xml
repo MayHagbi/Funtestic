@@ -61,6 +61,8 @@
     <string name="create_account">צור חשבון</string>
     <string name="already_a_member_login">יש לך כבר חשבון? התחבר</string>
     <string name="enter_full_name">הזן שם מלא</string>
+    <string name="go_to_quiz">עבור לשאלון</string>
+    <string name="must_select_category">יש לבחור קטגוריה</string>
     <string-array name="genderList">
         <item>זכר</item>
         <item>נקבה</item>
