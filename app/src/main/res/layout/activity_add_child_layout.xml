@@ -16,7 +16,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="107dp"
         android:layout_marginLeft="107dp"
-        android:layout_marginTop="199dp"
+        android:layout_marginTop="160dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_name"
@@ -34,7 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="107dp"
         android:layout_marginLeft="107dp"
-        android:layout_marginTop="338dp"
+        android:layout_marginTop="307dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_age"
@@ -50,9 +50,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="107dp"
-        android:layout_marginLeft="107dp"
-        android:layout_marginTop="270dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="232dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/enter_id"
@@ -71,7 +71,7 @@
         android:layout_marginStart="116dp"
         android:layout_marginLeft="116dp"
 
-        android:layout_marginTop="420dp" />
+        android:layout_marginTop="401dp" />
 
     <Button
         android:id="@+id/btnSubChild"
@@ -94,10 +94,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="31dp"
-        android:layout_marginLeft="31dp"
-        android:layout_marginTop="132dp"
-        android:text="@string/child_details"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="83dp"
+        android:text="@string/child_details_text"
         android:textColor="@color/colorPrimaryDarkShlomi"
         android:textSize="24sp" />
 
@@ -108,10 +108,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="37dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginTop="218dp"
-        android:text="@string/name"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="173dp"
+        android:text="@string/name_text"
         android:textSize="17sp" />
 
     <TextView
@@ -121,10 +121,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="51dp"
-        android:layout_marginLeft="51dp"
-        android:layout_marginTop="275dp"
-        android:text="@string/ID"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="248dp"
+        android:text="@string/ID_text"
         android:textSize="17sp" />
 
     <TextView
@@ -134,10 +134,10 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="42dp"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="346dp"
-        android:text="@string/age"
+        android:layout_marginStart="38dp"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="318dp"
+        android:text="@string/age_text"
         android:textSize="17sp" />
 
     <TextView
@@ -149,8 +149,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="29dp"
         android:layout_marginLeft="29dp"
-        android:layout_marginTop="431dp"
-        android:text="@string/gender"
+        android:layout_marginTop="413dp"
+        android:text="@string/gender_text"
         android:textSize="17sp" />
 
 </RelativeLayout>
