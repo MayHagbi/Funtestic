@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.funtestic.R;
 import com.funtestic.adapters.ChildListAdapter;
@@ -61,9 +62,9 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         });
 
 ////check/////////
-        Intent i = getIntent();
-        Person dene = (Person)i.getSerializableExtra("Person");
-        Log.d(TAG,dene.getName());
+        //Intent i = getIntent();
+        //Person dene = (Person)i.getSerializableExtra("Person");
+        //Log.d(TAG,dene.getName());
 /////////////////
         addChild();
 
@@ -118,6 +119,8 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
                     //TODO send selectedChild object to next activity
                     //finish();
                 }
+                else
+                    Toast.makeText(this,R.string.no_selected_child, Toast.LENGTH_LONG).show();
                 break;
 
         }
