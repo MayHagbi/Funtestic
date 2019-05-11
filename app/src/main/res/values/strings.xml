@@ -35,11 +35,11 @@
     <string name="next">הבא</string>
     <string name="previous">הקודם</string>
     <string name="end_quiz">סיים ושלח</string>
-	<string name="name">שם:</string>
-    <string name="ID">ת.ז.:</string>
-    <string name="age">גיל:</string>
-    <string name="gender">מגדר:</string>
-    <string name="child_details">פרטי הילד:</string>
+	<string name="name_text">שם:</string>
+    <string name="ID_text">ת.ז.:</string>
+    <string name="age_text">גיל:</string>
+    <string name="gender_text">מגדר:</string>
+    <string name="child_details_text">פרטי הילד:</string>
     <string name="submit">הוספה</string>
     <string name="enter_name">הזן את שם הילד כאן</string>
     <string name="enter_id">הזן את מספר הזהות כאן</string>
@@ -63,6 +63,7 @@
     <string name="enter_full_name">הזן שם מלא</string>
     <string name="go_to_quiz">עבור לשאלון</string>
     <string name="must_select_category">יש לבחור קטגוריה</string>
+    <string name="no_selected_child">לא נבחר ילד</string>
     <string-array name="genderList">
         <item>זכר</item>
         <item>נקבה</item>

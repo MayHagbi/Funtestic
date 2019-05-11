@@ -10,23 +10,27 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.funtestic.R;
 import com.funtestic.adapters.ChildListAdapter;
 import com.funtestic.models.Child;
+import com.funtestic.models.Person;
 
 import java.util.ArrayList;
 
 
-public class SelectChildActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class SelectChildActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
 
     private static final String TAG = "Main";
     static final int REQUEST_ADDCHILD = 0;
 
     private ArrayList<Child> childsList;    //TODO get the list from parent
     private ChildListAdapter adapter;
-    private ListView mListView;
-    private SearchView mSearchView;
+    private Button btnAddChild,btnSeleChild;
+
+    private ListView childListView;
+    private SearchView childSearchView;
     private Child selectedChild;
 
     @Override
@@ -34,32 +38,21 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_child_layout);
 
-        mListView = (ListView) findViewById(R.id.listView);
-        mSearchView=(SearchView) findViewById(R.id.searchView);
+        childListView = (ListView) findViewById(R.id.listView);
+        childSearchView = (SearchView) findViewById(R.id.searchView);
+        btnAddChild = (Button) findViewById(R.id.btnAddChild);
+        btnSeleChild = (Button) findViewById(R.id.btnSelectChild);
+
+        btnAddChild.setOnClickListener(this);
+        btnSeleChild.setOnClickListener(this);
+        childListView.setTextFilterEnabled(true);
+        childListView.setAdapter(adapter);
 
         childsList = new ArrayList<>();
         adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childsList);
 
 
-        Button btnAddChild = findViewById(R.id.btnAddChild);
-        btnAddChild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivityForResult(new Intent(SelectChildActivity.this, AddChildActivity.class), REQUEST_ADDCHILD);
-            }
-        });
-
-        Button btnSeleChild = findViewById(R.id.btnSelectChild);
-        btnSeleChild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedChild!=null) {
-                    //TODO send selectedChild object to next activity
-                }
-            }
-        });
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        childListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedChild = adapter.getItem(position);
@@ -68,6 +61,80 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
             }
         });
 
+////check/////////
+        //Intent i = getIntent();
+        //Person dene = (Person)i.getSerializableExtra("Person");
+        //Log.d(TAG,dene.getName());
+/////////////////
+        addChild();
+
+        setupSearchView();
+    }
+
+
+    @Override
+    public boolean onQueryTextChange(String newText)
+    {
+        if (TextUtils.isEmpty(newText)) {
+            childListView.clearTextFilter();
+        } else {
+            childListView.setFilterText(newText);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query)
+    {
+        return false;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ChildListAdapter adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childsList);
+        childListView.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_ADDCHILD) {
+            if (resultCode == RESULT_OK) {
+                Child incomingChild = (Child)data.getSerializableExtra("child");
+                childsList.add(incomingChild);
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.btnAddChild:
+                startActivityForResult(new Intent(SelectChildActivity.this, AddChildActivity.class), REQUEST_ADDCHILD);
+                break;
+
+            case R.id.btnSelectChild:
+                if (selectedChild!=null) {
+                    //TODO send selectedChild object to next activity
+                    //finish();
+                }
+                else
+                    Toast.makeText(this,R.string.no_selected_child, Toast.LENGTH_LONG).show();
+                break;
+
+        }
+    }
+
+    private void setupSearchView()
+    {
+        childSearchView.setIconifiedByDefault(false);
+        childSearchView.setOnQueryTextListener(this);
+        childSearchView.setSubmitButtonEnabled(true);
+        childSearchView.setQueryHint("Search Here");
+    }
+
+    private void addChild(){
         ///////////////////for check/////////////////////
         Child john = null;
         Child ron = null;
@@ -90,69 +157,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
             e.printStackTrace();
         }
         ///////////////////////////////////////////////
-
         //TODO add childs of the appropriate father from database to childsList
-        mListView.setAdapter(adapter);
-
-        mListView.setTextFilterEnabled(true);
-        setupSearchView();
-    }
-
-    private void setupSearchView()
-    {
-        mSearchView.setIconifiedByDefault(false);
-        mSearchView.setOnQueryTextListener(this);
-        mSearchView.setSubmitButtonEnabled(true);
-        mSearchView.setQueryHint("Search Here");
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText)
-    {
-
-        if (TextUtils.isEmpty(newText)) {
-            mListView.clearTextFilter();
-        } else {
-            mListView.setFilterText(newText);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query)
-    {
-        return false;
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ChildListAdapter adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childsList);
-        mListView.setAdapter(adapter);
-        //Log.d(TAG,"onResume!!!");
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_ADDCHILD) {
-            if (resultCode == RESULT_OK) {
-                //TextView incomingName = findViewById(R.id.etIncomingName);
-                //TextView incomingGender = findViewById(R.id.etIncomingGender);
-                //TextView incomingAge = findViewById(R.id.etIncomingAge);
-
-
-                Child incomingChild = (Child)data.getSerializableExtra("child");
-                //incomingName.setText(incomingChild.getName());
-                //incomingGender.setText(incomingChild.getGender());
-                //incomingAge.setText((Integer.toString(incomingChild.getAge())));
-
-                childsList.add(incomingChild);
-                //TODO add incomingChild object to child database
-                //Log.d(TAG,"onactivity result!!!" + incomingName);
-
-            }
-        }
     }
 
 }
