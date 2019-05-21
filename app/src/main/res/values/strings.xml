@@ -35,7 +35,7 @@
     <string name="next">הבא</string>
     <string name="previous">הקודם</string>
     <string name="end_quiz">סיים ושלח</string>
-	<string name="name_text">שם:</string>
+    <string name="name_text">שם:</string>
     <string name="ID_text">ת.ז.:</string>
     <string name="age_text">גיל:</string>
     <string name="gender_text">מגדר:</string>
