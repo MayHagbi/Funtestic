@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.funtestic.R;
 import com.funtestic.activities.user.SignUpActivity;
 
+import java.security.MessageDigest;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -88,8 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.show();
 
         //TODO Search for user name and password in data base, Encrypt password with SHA
-
-
+        // Show message in case of bad username/password
 
     }
 
@@ -103,9 +104,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(view == signupBtn )
         {
-            //TODO move to sign up activity
             startActivity(new Intent(MainActivity.this, SignUpActivity.class));
         }
 
+    }
+
+    public String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 }
