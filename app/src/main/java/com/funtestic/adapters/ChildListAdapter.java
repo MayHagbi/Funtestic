@@ -55,12 +55,12 @@ public class ChildListAdapter extends ArrayAdapter<Child> implements Filterable 
         String name = getItem(position).getName();
         String gender = getItem(position).getGender();
         String age = getItem(position).getAge();
-        String id = getItem(position).getId();
+        //String id = getItem(position).getId();
 
         //Create the child object with the information
         Child child = null;
         try {
-            child = new Child(name,gender,age,id);
+            //child = new Child(name,gender,age,id);
         } catch (Exception e) {
             e.printStackTrace();
         }
