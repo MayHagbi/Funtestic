@@ -10,17 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.funtestic.R;
-//import butterknife.BindView;
-//import butterknife.ButterKnife; //TODO: how it work?
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    @BindView(R.id.input_name)
-    private EditText etName;
+    private EditText firstName;
+    private EditText lastName;
 //    @BindView(R.id.input_email)
-    private EditText etEmail;
+    private EditText phoneNumber;
 //    @BindView(R.id.input_password)
-    private EditText etPassword;
+    private EditText password;
 //    @BindView(R.id.btn_signUp)
     private Button btnSignUp;
 //    @BindView(R.id.link_login)
@@ -34,12 +33,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.signup_activity_layout);
 //        ButterKnife.bind(this);
 
-        etName = (EditText) findViewById(R.id.input_name_sign_up);
-        etEmail = (EditText) findViewById(R.id.input_email_sign_up);
-        etPassword = (EditText) findViewById(R.id.input_password_sign_up);
+        firstName = (EditText) findViewById(R.id.input_firstName);
+        lastName = (EditText) findViewById(R.id.input_lastName);
+        phoneNumber = (EditText) findViewById(R.id.input_phoneNumber);
+        password = (EditText) findViewById(R.id.input_password_sign_up);
+        etId = (EditText) findViewById(R.id.input_id_sign_up);
+
         btnSignUp = (Button) findViewById(R.id.btn_sign_up);
         loginLink = (TextView) findViewById(R.id.link_login_sign_up_activity);
-        etId = (EditText) findViewById(R.id.input_id_sign_up);
         signUpProgressDialog = new ProgressDialog(this);
         btnSignUp.setOnClickListener(this);
         loginLink.setOnClickListener(this);
@@ -90,9 +91,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean addUserToDB() {
-        String name = etName.getText().toString();
-        String email = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
+        String first_name = firstName.getText().toString();
+        String last_name = lastName.getText().toString();
+        String phone = phoneNumber.getText().toString();
+        String pass = password.getText().toString();
         String id = etId.getText().toString();
 
         // TODO: add the user to DB
