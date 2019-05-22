@@ -3,45 +3,60 @@ package com.funtestic.models;
 import java.util.*; 
 
 
-public class User extends Person {
-
-
-	private String email;
-	private List<String> childId;//list of child ids
+public class User {
+	private String first_name ;
+	private String last_name ;
+	private String id;
+	private String number;
 	private String password;
 
 
-	public User(String id , String name , String email , String password) throws Exception  {
-		super(id,name);
-		setEmail(email);
-		this.password=password;
-		this.childId= new ArrayList<String>();
-
+	public User(String first_name , String last_name,String id,String number,String password) throws Exception {
+		setFirst_name(first_name);
+		setLast_name(last_name);
+		setId(id);
+		setNumber(number);
+		setPassword(password);
 	}
 
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-
-	public String getEmail() {
-		return this.email ;
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
 
-
-	public void addChild(String id) throws Exception {
-		if(id.matches("[0-9]+") || id.length()==8) {
-			this.childId.add(id);
-		}
-		else {
-			throw new Exception("The value of the child id is invalid");
-		}
-
+	public String getLast_name() {
+		return last_name;
 	}
 
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
 
-	public void removeChild(String id) {
-		//TODO
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }
