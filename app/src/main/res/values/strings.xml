@@ -62,7 +62,8 @@
     <string name="sign_up_failed">ההרשמה נכשלה</string>
     <string name="create_account">צור חשבון</string>
     <string name="already_a_member_login">יש לך כבר חשבון? התחבר</string>
-    <string name="enter_full_name">הזן שם מלא</string>
+    <string name="enter_first_name">הזן שם פרטי</string>
+    <string name="enter_last_name">הזן שם משפחה</string>
     <string name="go_to_quiz">עבור לשאלון</string>
     <string name="must_select_category">יש לבחור קטגוריה</string>
     <string name="no_selected_child">לא נבחר ילד</string>

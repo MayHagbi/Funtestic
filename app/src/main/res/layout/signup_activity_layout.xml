@@ -36,11 +36,17 @@
             <!---->
         <!--</android.support.design.widget.TextInputLayout>-->
 
-        <EditText android:id="@+id/input_name_sign_up"
+        <EditText android:id="@+id/input_firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords"
-            android:hint="@string/enter_full_name" />
+            android:hint="@string/enter_first_name" />
+
+        <EditText android:id="@+id/input_lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:hint="@string/enter_last_name" />
 
         <!-- Email Label -->
         <!--<android.support.design.widget.TextInputLayout-->
@@ -51,11 +57,11 @@
             <!---->
         <!--</android.support.design.widget.TextInputLayout>-->
 
-        <EditText android:id="@+id/input_email_sign_up"
+        <EditText android:id="@+id/input_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="@string/enter_email" />
+            android:hint="@string/please_enter_phone" />
 
         <!-- Password Label -->
         <!--<android.support.design.widget.TextInputLayout-->
