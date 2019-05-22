@@ -2,9 +2,11 @@ package com.funtestic.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import com.funtestic.R;
 import com.funtestic.activities.user.SignUpActivity;
+import com.funtestic.models.Send_HTTP_Request;
 
 import java.security.MessageDigest;
 
@@ -29,6 +32,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
+        //YOELLLLLL
+        new Thread(new Runnable() {
+            public void run() {
+                // a potentially time consuming task
+                try {
+                    Log.d("TTTT",Send_HTTP_Request.call_me());
+                } catch (Exception e) {
+                    Log.d("FFFF", String.valueOf(e));
+
+
+                }
+            }
+        }).start();
+        //YOELLLLL
+
+        Log.d("TTTTT","PATHH");
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
         userName = (EditText) findViewById(R.id.userName);
