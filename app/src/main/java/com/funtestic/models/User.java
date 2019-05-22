@@ -11,13 +11,22 @@ public class User {
 	private String password;
 
 
-	public User(String first_name , String last_name,String id,String number,String password) throws Exception {
+	public User(String first_name , String last_name,String id,String number,String password)  {
 		setFirst_name(first_name);
 		setLast_name(last_name);
 		setId(id);
 		setNumber(number);
 		setPassword(password);
 	}
+
+	public User(User usr)
+    {
+        setFirst_name(usr.getFirst_name());
+        setLast_name(usr.getLast_name());
+        setId(usr.getId());
+        setNumber(usr.getNumber());
+        setPassword(usr.getPassword());
+    }
 
 
 	public String getFirst_name() {

@@ -14,12 +14,21 @@ public class Child{
 
 
 
-	public Child (String gender,String age,String name,User usr) throws Exception {
+	public Child (String gender,String age,String name,User usr){
         setName(name);
 		setAge(age);
 		setGender(gender);
-		user = new User(usr.getFirst_name(),usr.getLast_name(),usr.getId(),usr.getNumber(),usr.getPassword());
+		user = new User(usr);
 	}
+
+	public Child(Child chld)
+    {
+        setName(chld.getName());
+        setAge(chld.getAge());
+        setGender(chld.getGender());
+        setUser(chld.getUser());
+
+    }
 
 	public String getGender() {
         return gender;
@@ -47,5 +56,9 @@ public class Child{
 
     public User getUser() {
         return user;
+    }
+
+    public void setUser(User usr){
+	    user = new User(usr);
     }
 }
