@@ -1,6 +1,11 @@
 package com.funtestic.models;
 
+import android.util.Log;
+
 import com.funtestic.interfaces.IDatabase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,13 +20,24 @@ import java.util.Map;
 public class DataBase implements IDatabase {
 
     static DataBase ins;
-    static final String URL = "giladg.tk";
+    String res;
+    JSONObject jsonParam;
 
     // private ctor
     private static void DataBase(){}
 
+    private JSONObject parseJson(String json){
+        JSONObject obj = null;
+        try {
+            obj = new JSONObject(json);
+        } catch (Throwable t) {
+            Log.e("Funtestic", "Could not parse malformed JSON: \"" + json + "\"");
+        }
+        return obj;
+    }
+
     // get instance
-    static DataBase getInstance(){
+   public static DataBase getInstance(){
         if(ins == null){
             ins = new DataBase();
         }
@@ -30,44 +46,34 @@ public class DataBase implements IDatabase {
 
     @Override
     public User getUserByEmail(String email){
-        URL url = null;
+        final JSONObject jsonParam = new JSONObject();
         try {
-            url = new URL(URL);
-        } catch (MalformedURLException e) {
+            // jsonParam.put("email", email); CHANGE THIS @#%#%@#%@#$
+            jsonParam.put("id","1111");
+            new Thread(new Runnable() {
+                public void run() {
+                    Log.d("TTTTT","IS RUNNING\n");
+                    // a potentially time consuming task
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/children/get/all");
+                        Log.d("TTT::: ",res);
+                        JSONObject json = parseJson(res);
+                        Log.d("PARSED: ",json.get("id").toString());
+                    } catch (Exception e) {
+                        Log.d("FFFF", String.valueOf(e));
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        HttpURLConnection con = null;
-        try {
-            con = (HttpURLConnection) url.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            con.setRequestMethod("GET");
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        }
-
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("username", "giladgu");
-
-        con.setDoOutput(true);
-//        DataOutputStream out = null;
-//        try {
-//            out = new DataOutputStream(con.getOutputStream());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
-//        out.flush();
-//        out.close();
-
-
         return null;
     }
 
     @Override
     public Child getChildById(String id) {
+
+
         return null;
     }
 

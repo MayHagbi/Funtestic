@@ -14,7 +14,10 @@ import android.widget.Toast;
 
 import com.funtestic.R;
 import com.funtestic.activities.user.SignUpActivity;
+import com.funtestic.models.DataBase;
 import com.funtestic.models.Send_HTTP_Request;
+
+import org.json.JSONObject;
 
 import java.security.MessageDigest;
 
@@ -32,20 +35,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
-        new Thread(new Runnable() {
-            public void run() {
-                Log.d("TTTTT","IS RUNNING\n");
-                // a potentially time consuming task
-                try {
-                    Log.d("TTTT",Send_HTTP_Request.call_me());
-                    Log.d("TTTTT","IS hhhhhhhh\n");
-                } catch (Exception e) {
-                    Log.d("FFFF", String.valueOf(e));
-
-
-                }
-            }
-        }).start();
+        ////////// HTTP REQUEST!!!!!/////
+        DataBase.getInstance().getUserByEmail("SDASDASD");
+        ////////////////////////////
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);

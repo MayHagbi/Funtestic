@@ -1,26 +1,22 @@
 package com.funtestic.models;
 
-import android.net.Uri;
 import android.util.Log;
-
+import org.json.JSONObject;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.security.Security;
-
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Send_HTTP_Request {
+    static final String URL = "http://10.0.2.2:7784";
 
-
-    public static String call_me() throws Exception {
+    public static String send(JSONObject jsonParam, String path) throws Exception {
+        // SSL
         TrustManager[] trustAllCerts = new TrustManager[]{
                 new X509TrustManager() {
 
@@ -42,58 +38,36 @@ public class Send_HTTP_Request {
         sc.init(null, trustAllCerts, new java.security.SecureRandom());
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-        String url = "http://10.0.2.2:7780/children/get/all";
-        System.out.println("HERE!!!!");
-        URL obj = new URL(url);
+        // URL && Start Connection
+        URL obj = new URL(URL + path);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        // Create Request
         con.setRequestMethod("POST");
-        con.setDoOutput(true);
-        con.setDoInput(true);
-        con.setRequestProperty("Accept", "application/json");        // optional default is GET
+        con.setRequestProperty("Content-Type", "application/json");
 
-        //add request header
-        //con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        // Add Parameters
+        DataOutputStream out = new DataOutputStream(con.getOutputStream());
+        Log.d("XXXX: ",jsonParam.toString());
+        out.writeBytes(jsonParam.toString());
+        out.flush();
+        out.close();
 
         System.out.println("!!!!!!\n");
-        // Log.d("!!!!:::",String.valueOf(con.getResponseCode()));
+        Log.d("!!!!:::",String.valueOf(con.getResponseCode()));
         System.out.println("!!!!!2!\n");
 
-        ///////////////////////
-        Uri.Builder builder = new Uri.Builder()
-                .appendQueryParameter("id", "111111");
-        String query = builder.build().getEncodedQuery();
-
-        OutputStream os = con.getOutputStream();
-        BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(os, "UTF-8"));
-        writer.write(query);
-        writer.flush();
-        writer.close();
-        os.close();
-
-       // con.connect();
-
-        /////////////////////////
-        //mack buffered reader--------------------------------
+        // create buffered reader
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
-        //----------------------------------------------------
-        System.out.println("HERE2!!!!");
 
-        //Enters all information from the site to buffer
+        // Read The Response
         String inputLine;
         StringBuffer response = new StringBuffer();
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
-            System.out.println("TTTTTTTTqqqqqqqqTTTTTT");
         }
-        //----------------------------------------------
-
         in.close();
-
+        con.disconnect();
         return response.toString();
-
     }
-
-
 }
