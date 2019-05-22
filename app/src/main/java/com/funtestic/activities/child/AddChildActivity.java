@@ -65,11 +65,11 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
                 String gender = genderSpinner.getSelectedItem().toString();
                 String age = etAge.getText().toString();
                 String id =  etID.getText().toString();
-                child = new Child(name, gender, age, id);
+                //child = new Child(name, gender, age, id);
 
                 //TODO add incomingChild object to child database
 
-                intent.putExtra("child", child);
+                //intent.putExtra("child", child);
                 setResult(RESULT_OK, intent);
 
             } catch (Exception e) {

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button signinBtn;
     private Button signupBtn;
-    private EditText userName;
+    private EditText userPhone;
     private EditText userPassword;
     private ProgressDialog progressDialog;
 
@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
-        //YOELLLLLL
         new Thread(new Runnable() {
             public void run() {
                 Log.d("TTTTT","IS RUNNING\n");
@@ -47,11 +46,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }).start();
-        //YOELLLLL
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
-        userName = (EditText) findViewById(R.id.userName);
+        userPhone = (EditText) findViewById(R.id.userPhone);
         userPassword = (EditText) findViewById(R.id.userPassword);
         progressDialog = new ProgressDialog(this);
 
@@ -76,31 +74,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    public final boolean isValidEmail(CharSequence target) {
+    public final static boolean isValidPhoneNumber(CharSequence target) {
+        if (target == null || target.length() < 6 || target.length() > 13) {
+            return false;
+        } else {
+            return android.util.Patterns.PHONE.matcher(target).matches();
+        }
+
+    }
+
+    public final boolean isValidPhone(CharSequence target) {
         if(TextUtils.isEmpty(target)){
-            Toast.makeText(this,R.string.enter_email, Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.please_enter_phone, Toast.LENGTH_LONG).show();
             return false;
         }
-        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()) {
-            Toast.makeText(this,R.string.email_not_valid, Toast.LENGTH_LONG).show();
+        if (target == null || target.length() < 10 || target.length() > 13) {
             return false;
-        };
-
+        }
+        else if(!android.util.Patterns.PHONE.matcher(target).matches()) {
+                Toast.makeText(this,R.string.phone_not_valid, Toast.LENGTH_LONG).show();
+                return false;
+        }
         return true;
     }
 
 
-    private void userLogin( String email ,String password ){
+    private void userLogin( String phone ,String password ){
 
 
         //Checking if email and password are valid
 
         if(!isValidPassword(password)) {
-            isValidEmail(email);
+            isValidPhone(phone);
             return ;
         }
 
-        if(!isValidEmail(email)){
+        if(!isValidPhoneNumber(phone)){
             isValidPassword(password);
             return ;
         };
@@ -117,9 +126,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view){
         if(view == signinBtn){
-            String email = userName.getText().toString().trim();
+            String phone = userPhone.getText().toString().trim();
             String password = userPassword.getText().toString().trim();
-            userLogin(email ,password);
+            userLogin(phone ,password);
         }
 
         if(view == signupBtn )

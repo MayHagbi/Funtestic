@@ -50,6 +50,8 @@
     <string name="password_too_short">הסיסמא שהזנת קצרה מידיי</string>
     <string name="enter_email">אנא הזן מייל</string>
     <string name="email_not_valid">המייל שהזנת לא חוקי</string>
+    <string name="phone_not_valid">מספר הפלאפון שהזנת לא חוקי</string>
+    <string name="please_enter_phone">אנא הזן מספר פלאפון</string>
     <string name="checking_user_details">בודק פרטי משתמש אנא המתן...</string>
     <string name="enter_username">אנא הכנס שם משתמש</string>
     <string name="login">התחברות</string>

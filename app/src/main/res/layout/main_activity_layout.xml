@@ -10,11 +10,11 @@
 
 
     <EditText
-        android:id="@+id/userName"
+        android:id="@+id/userPhone"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/enter_username"
+        android:hint="@string/please_enter_phone"
         android:layout_gravity="center"
         android:inputType="textPersonName"
         android:textDirection="anyRtl"
