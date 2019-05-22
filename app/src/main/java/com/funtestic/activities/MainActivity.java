@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //YOELLLLLL
         new Thread(new Runnable() {
             public void run() {
+                Log.d("TTTTT","IS RUNNING\n");
                 // a potentially time consuming task
                 try {
                     Log.d("TTTT",Send_HTTP_Request.call_me());
+                    Log.d("TTTTT","IS hhhhhhhh\n");
                 } catch (Exception e) {
                     Log.d("FFFF", String.valueOf(e));
 
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }).start();
         //YOELLLLL
 
-        Log.d("TTTTT","PATHH");
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
         userName = (EditText) findViewById(R.id.userName);
