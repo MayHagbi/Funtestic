@@ -121,12 +121,20 @@ public class DataBase implements IDatabase {
         try {
             jsonParam = new JSONObject(user.toString());
 
-            new Thread(new Runnable() {
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
                         res = Send_HTTP_Request.send(jsonParam,"/register");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             return false;
@@ -143,11 +151,21 @@ public class DataBase implements IDatabase {
     public boolean addChildToDb(Child child) {
         try {
             jsonParam = new JSONObject(child.toString());
-            new Thread(new Runnable() {
+
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                        res = Send_HTTP_Request.send(jsonParam,"/children/add");
+
+                    res = Send_HTTP_Request.send(jsonParam,"/children/add");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             return false;
@@ -163,11 +181,21 @@ public class DataBase implements IDatabase {
     public boolean addQuizToDb(Quiz quiz) {
         try {
             jsonParam = new JSONObject(quiz.toString());
-            new Thread(new Runnable() {
+
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                        res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
+
+                    res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
             return false;
