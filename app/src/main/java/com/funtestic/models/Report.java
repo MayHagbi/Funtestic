@@ -4,35 +4,29 @@ import java.util.ArrayList;
 
 public class Report {
 
-    private String createDate;
-    private Child child;
-    private ArrayList<Quiz> quizes;
+    private String id;
+    private String create_at;
 
-    public Report(String createDate,Child child,ArrayList<Quiz> quiz)
+    public Report(String id,String create_at )
     {
-        this.createDate = createDate;
-        child = new Child(child);
-        quizes = new ArrayList<Quiz>();
-        for(int i=0;i<quiz.size();i++)
-        {
-            quizes.add(quiz.get(i));
-        }
-
+        setId(id);
+        setCreate_at(create_at);
     }
 
-    public String getCreateDate() {
-        return createDate;
+
+    public String getId() {
+        return id;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Child getChild() {
-        return child;
+    public String getCreate_at() {
+        return create_at;
     }
 
-    public void setChild(Child child) {
-        this.child = child;
+    public void setCreate_at(String create_at) {
+        this.create_at = create_at;
     }
 }
