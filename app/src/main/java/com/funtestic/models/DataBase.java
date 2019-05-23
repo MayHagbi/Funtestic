@@ -83,29 +83,45 @@ public class DataBase implements IDatabase {
 
     @Override
     public Child getChildById(String id) {
+        jsonParam = new JSONObject();
         try {
-            jsonParam= new JSONObject();
             jsonParam.put("id_number", id);
             //--------------------------------
-            new Thread(new Runnable() {
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        res = Send_HTTP_Request.send(jsonParam,"/children/get");
-                        Log.d("YYYYYY",res.toString());
-                        JSONObject json = new JSONObject(res);
-
-                        Log.d("YYYYYY",json.toString());
-                        //"parent":{"first_name":"Haviv","last_name":"Eyal","email":"yoel@gmail.com","phone_number":"089922222","password":"12345678"}}
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return null;
+            }
             //--------------------------
-
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
+        }
+        if(!res.equals("")){
+            JSONObject json = parseJson(res);
+
+            try {
+                JSONObject parent = parseJson(json.get("parent").toString());
+
+                User father = new User(parent.get("first_name").toString(), parent.get("last_name").toString(),
+                        parent.get("phone_number").toString(),
+                        parent.get("email").toString(), parent.get("password").toString());
+                Child newChile =new Child(json.get("gender").toString(),json.get("age").toString()
+                        ,json.get("name").toString(),json.get("id_number").toString(),father);
+
+                return   newChile;
+                }
+            catch (Exception e){
+                e.printStackTrace();
+                return null;
+            }
+
         }
         return null;
     }
@@ -166,17 +182,27 @@ public class DataBase implements IDatabase {
         try {
             jsonParam = new JSONObject(user.toString());
 
-            new Thread(new Runnable() {
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    try {
+
                         res = Send_HTTP_Request.send(jsonParam,"/register");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
         }
         return true;
 
@@ -186,17 +212,28 @@ public class DataBase implements IDatabase {
     public boolean addChildToDb(Child child) {
         try {
             jsonParam = new JSONObject(child.toString());
-            new Thread(new Runnable() {
+
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        res = Send_HTTP_Request.send(jsonParam,"/children/add");
-                    } catch (Exception e) {
-                       e.printStackTrace();
-                    }
+
+                    res = Send_HTTP_Request.send(jsonParam,"/children/add");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
         }
         return true;
     }
@@ -205,17 +242,28 @@ public class DataBase implements IDatabase {
     public boolean addQuizToDb(Quiz quiz) {
         try {
             jsonParam = new JSONObject(quiz.toString());
-            new Thread(new Runnable() {
+
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+
+                    res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
         }
         return true;
     }

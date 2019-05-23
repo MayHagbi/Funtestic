@@ -8,7 +8,7 @@ import java.util.*;
 public class User {
 	private String first_name ;
 	private String last_name ;
-	private String number;
+	private String number; //out of json
 	private String email;
 	private String password;
 
@@ -73,13 +73,16 @@ public class User {
     @Override
 	public String toString() {
         try {
+            JSONObject json = new JSONObject();
             JSONObject user = new JSONObject();
             user.put("first_name", getFirst_name());
             user.put("last_name", getLast_name());
             user.put("email", getEmail());
-            user.put("phone_number", getNumber());
             user.put("password", getPassword());
-            return user.toString();
+
+            json.put("user",user.toString());
+            json.put("phone_number", getNumber());
+            return json.toString();
         } catch (Exception e) {
             e.printStackTrace();
             return "{}";
