@@ -1,5 +1,7 @@
 package com.funtestic.models;
 
+import org.json.JSONObject;
+
 public class Quiz {
 
     private String grade;
@@ -25,5 +27,22 @@ public class Quiz {
 
     public void setChild(Child child) {
         this.child = child;
+    }
+
+    @Override
+    public String toString()
+    {
+        try {
+            JSONObject quiz = new JSONObject();
+            quiz.put("grade", getGrade());
+            quiz.put("child",child.toString());
+            return quiz.toString();
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "{}";
+        }
     }
 }

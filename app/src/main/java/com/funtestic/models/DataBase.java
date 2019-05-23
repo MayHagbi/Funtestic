@@ -82,21 +82,61 @@ public class DataBase implements IDatabase {
 
     @Override
     public boolean addUserToDb(User user) {
-        jsonParam = new JSONObject();
+        try {
+            jsonParam = new JSONObject(user.toString());
 
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/register");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
 
-
-        return false;
     }
 
     @Override
     public boolean addChildToDb(Child child) {
-        return false;
+        try {
+            jsonParam = new JSONObject(child.toString());
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/children/add");
+                    } catch (Exception e) {
+                       e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
     public boolean addQuizToDb(Quiz quiz) {
-        return false;
+        try {
+            jsonParam = new JSONObject(quiz.toString());
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
