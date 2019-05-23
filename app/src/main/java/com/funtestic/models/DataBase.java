@@ -271,8 +271,8 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public ArrayList<Quiz> getChildQuizGradesFromDb(String id) {
-        ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
+    public ArrayList<Report> getChildQuizGradesFromDb(String id) {
+        ArrayList<Report> reports = new ArrayList<Report>();
         jsonParam = new JSONObject();
         try {
             jsonParam.put("child", id);
@@ -293,24 +293,14 @@ public class DataBase implements IDatabase {
         }
         if(!res.equals("")){
             try {
-                JSONArray child_json = new JSONArray(res);
-                int size = child_json.length();
+                JSONArray report_list = new JSONArray(res);
+                int size = report_list.length();
                 for(int i=0;i<size;i++){
-                    JSONObject j = (JSONObject)child_json.get(i);
-                    JSONObject parent = (JSONObject)j.get("parent");
-                    JSONObject user = (JSONObject)parent.get("user");
-                    Child child = new Child(j.get("id").toString(),
-                            j.get("age").toString(),
-                            j.get("gender").toString(),
-                            j.get("name").toString(),
-                            new User(user.get("first_name").toString(),
-                                    user.get("last_name").toString(),
-                                    user.get("email").toString(),
-                                    parent.get("phone_number").toString(),
-                                    user.get("password").toString() ));
-                    childs.add(child);
+                    JSONObject j = (JSONObject)report_list.get(i);
+                    Report repo = new Report(j.get("id").toString(),j.get("create_at").toString());
+                    reports.add(repo);
                 }
-                return childs;
+                return reports;
             }
             catch (Exception e){
                 e.printStackTrace();

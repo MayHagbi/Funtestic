@@ -2,6 +2,7 @@ package com.funtestic.interfaces;
 
 import com.funtestic.models.Child;
 import com.funtestic.models.Quiz;
+import com.funtestic.models.Report;
 import com.funtestic.models.User;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public interface IDatabase {
     public boolean addQuizToDb(Quiz quiz);
 
     //Get child quiz grades from database
-    public ArrayList<Quiz> getChildQuizGradesFromDb(String id);
+    public ArrayList<Report> getChildQuizGradesFromDb(String id);
 
     //Send Report To Email
     public boolean sendReportToEmail(String childId);
