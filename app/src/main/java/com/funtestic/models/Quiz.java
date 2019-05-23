@@ -2,32 +2,27 @@ package com.funtestic.models;
 
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+
 public class Quiz {
 
-    private String grade;
-    private Child child;
+    private DecimalFormat grade;
+    private String childId;
 
-    public Quiz(String grade,Child chld)
+    public Quiz(DecimalFormat grade,String id)
     {
         this.grade = grade;
-        child = new Child(chld);
+        this.childId = id;
     }
 
-    public String getGrade() {
+    public DecimalFormat getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
+    public void setGrade(DecimalFormat grade) {
         this.grade = grade;
     }
 
-    public Child getChild() {
-        return child;
-    }
-
-    public void setChild(Child child) {
-        this.child = child;
-    }
 
     @Override
     public String toString()
@@ -35,7 +30,7 @@ public class Quiz {
         try {
             JSONObject quiz = new JSONObject();
             quiz.put("grade", getGrade());
-            quiz.put("child",child.toString());
+            quiz.put("child",getChildId());
             return quiz.toString();
 
         }
@@ -44,5 +39,13 @@ public class Quiz {
             e.printStackTrace();
             return "{}";
         }
+    }
+
+    public String getChildId() {
+        return childId;
+    }
+
+    public void setChildId(String childId) {
+        this.childId = childId;
     }
 }
