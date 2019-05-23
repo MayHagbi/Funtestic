@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.funtestic.interfaces.IDatabase;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,20 +46,40 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public User getUserByEmail(String email){
-        final JSONObject jsonParam = new JSONObject();
+    public User getUserByPhone(String phone){
+        jsonParam = new JSONObject();
         try {
             // jsonParam.put("email", email); CHANGE THIS @#%#%@#%@#$
+
+            // START TEST
+            Child c =new Child("male","123","gilad",new User("asdas","Asd","asdasd","asd","asd"));
+
+            JSONObject js = new JSONObject();
+            js.put("gender",c.getGender());
+            js.put("age",c.getAge());
+            js.put("name",c.getName());
+            JSONObject father = new JSONObject();
+            father.put("firstName","FaTHER NAMEEE");
+            js.put("father",father);
+
+
+            Log.d("RRRRR",js.toString());
+            //Log.d("RRRRRR",)
+            //// END TEST
             jsonParam.put("id","1111");
             new Thread(new Runnable() {
                 public void run() {
                     Log.d("TTTTT","IS RUNNING\n");
                     // a potentially time consuming task
                     try {
-                        res = Send_HTTP_Request.send(jsonParam,"/children/get/all");
+                        res = Send_HTTP_Request.send(jsonParam,"/children/get/all/");
                         Log.d("TTT::: ",res);
-                        JSONObject json = parseJson(res);
-                        Log.d("PARSED: ",json.get("id").toString());
+                        // JSONObject json = parseJson(res);
+                        JSONArray json = new JSONArray(res);
+                        JSONObject  j = new  JSONObject(json.get(0).toString());
+                        Log.d("PARSED1:",j.toString());
+                        //Log.d("PARSED: ",json.get("id").toString());
+                        Log.d("PARSED2:",json.toString());
                     } catch (Exception e) {
                         Log.d("FFFF", String.valueOf(e));
                     }
@@ -78,7 +99,7 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public ArrayList<Child> getUserChildren(String email) {
+    public ArrayList<Child> getUserChildren(String phone) {
         return null;
     }
 
@@ -103,7 +124,7 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public boolean sendReportToEmail(String parentEmail, String childId) {
+    public boolean sendReportToEmail(String childId) {
         return false;
     }
 }

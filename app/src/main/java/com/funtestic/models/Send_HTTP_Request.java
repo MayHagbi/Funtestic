@@ -13,25 +13,15 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Send_HTTP_Request {
-    static final String URL = "http://10.0.2.2:7784";
+    static final String URL = "http://10.0.2.2:7785";
 
     public static String send(JSONObject jsonParam, String path) throws Exception {
         // SSL
         TrustManager[] trustAllCerts = new TrustManager[]{
                 new X509TrustManager() {
-
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers()
-                    {
-                        return null;
-                    }
-                    public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType)
-                    {
-                        //No need to implement.
-                    }
-                    public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType)
-                    {
-                        //No need to implement.
-                    }
+                    public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
+                    public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) { }
+                    public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) { }
                 }
         };
         SSLContext sc = SSLContext.getInstance("SSL");
@@ -39,7 +29,8 @@ public class Send_HTTP_Request {
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
         // URL && Start Connection
-        URL obj = new URL(URL + path);
+        //URL obj = new URL(URL + path);
+        URL obj = new URL("http://www.mocky.io/v2/5ce667d33300004b3573150f");
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         // Create Request
         con.setRequestMethod("POST");

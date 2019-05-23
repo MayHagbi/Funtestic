@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.main_activity_layout);
 
         ////////// HTTP REQUEST!!!!!/////
-        DataBase.getInstance().getUserByEmail("SDASDASD");
+        DataBase.getInstance().getUserByPhone("SDASDASD");
         ////////////////////////////
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
