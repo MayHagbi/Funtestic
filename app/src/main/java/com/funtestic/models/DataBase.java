@@ -164,7 +164,7 @@ public class DataBase implements IDatabase {
                                     parent.get("phone_number").toString(),
                                     parent.get("password").toString() ));
                     childs.add(child);
-                    Log.d("TTTT$$$:",child.toString());
+                    Log.d("TTTT$$$:",child.getUser().getFirst_name());
                 }
                 return childs;
             }
