@@ -70,6 +70,30 @@ public class DataBase implements IDatabase {
 
     @Override
     public Child getChildById(String id) {
+        try {
+            jsonParam= new JSONObject();
+            jsonParam.put("id_number", id);
+            //--------------------------------
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/children/get");
+                        Log.d("YYYYYY",res.toString());
+                        JSONObject json = new JSONObject(res);
+
+                        Log.d("YYYYYY",json.toString());
+                        //"parent":{"first_name":"Haviv","last_name":"Eyal","email":"yoel@gmail.com","phone_number":"089922222","password":"12345678"}}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+            //--------------------------
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         return null;
