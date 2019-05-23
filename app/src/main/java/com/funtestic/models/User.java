@@ -80,7 +80,7 @@ public class User {
             user.put("email", getEmail());
             user.put("password", getPassword());
 
-            json.put("user",user.toString());
+            json.put("user",user);
             json.put("phone_number", getNumber());
             return json.toString();
         } catch (Exception e) {
