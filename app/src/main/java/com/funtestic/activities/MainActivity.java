@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.main_activity_layout);
 
         ////////// HTTP REQUEST!!!!!/////
-        DataBase.getInstance().addUserToDb(new User("A","S","d","d","d"));
+        User usr = DataBase.getInstance().getUserByPhone("SDFDSFS");
+        //Log.d("2222TTTTT:",usr.toString());
         ////////////////////////////
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
