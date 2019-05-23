@@ -33,7 +33,8 @@
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/radio5">
 
             <RadioButton
                 android:layout_width="match_parent"
@@ -101,7 +102,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:text="@string/next"
-                android:onClick="openQuestion6Activity"
                 android:id="@+id/next5"/>
 
             <Button
@@ -109,7 +109,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="@string/previous"
-                android:onClick="openQuestion4Activity"
                 android:id="@+id/previous5"/>
 
         </RelativeLayout>

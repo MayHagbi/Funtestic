@@ -51,7 +51,7 @@ public class Question2Activity extends AppCompatActivity {
                 String answer = String.valueOf(choose_btn.getText());
 
                 // save score by answer in shared preferences
-                scorePreferencesInitialization(answer);
+                SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question2");
 
                 openQuestion3Activity();
 
@@ -69,15 +69,6 @@ public class Question2Activity extends AppCompatActivity {
                 openQuestion1Activity();
             }
         });
-    }
-
-    public void scorePreferencesInitialization(String answer){
-        int score = SharedConstants.scoreMap.get(answer);
-        SharedPreferences.Editor score_editor = table_score_prefs.edit();
-
-        score_editor.putInt("question2", score);
-
-        score_editor.commit();
     }
 
     public void openQuestion1Activity()

@@ -25,7 +25,6 @@ public class Question1Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question1_layout);
-        //table_score_prefs = getSharedPreferences("score", MODE_PRIVATE);
         table_score_prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         addListenerOnButton();
@@ -49,26 +48,17 @@ public class Question1Activity extends AppCompatActivity {
                 // save text of answer from button
                 String answer = String.valueOf(choose_btn.getText());
 
+                //score_editor.clear();
                 // save score by answer in shared preferences
-                scorePreferencesInitialization(answer);
+                SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question1");
 
                 openQuestion2Activity();
+
 //                Toast.makeText(Question1Activity.this,
 //                        String.valueOf(table_score_prefs.getInt("question1", -1)), Toast.LENGTH_SHORT).show();
             }
 
         });
-    }
-
-    public void scorePreferencesInitialization(String answer){
-        int score = SharedConstants.scoreMap.get(answer);
-        SharedPreferences.Editor score_editor = table_score_prefs.edit();
-
-        //score_editor.clear();
-
-        score_editor.putInt("question1", score);
-
-        score_editor.commit();
     }
 
     public void openQuestion2Activity()
