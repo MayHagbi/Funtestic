@@ -101,8 +101,6 @@ public class DataBase implements IDatabase {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-<<<<<<< Updated upstream
-=======
         if(!res.equals("")){
             JSONObject json = parseJson(res);
 
@@ -122,7 +120,6 @@ public class DataBase implements IDatabase {
             }
 
         }
->>>>>>> Stashed changes
         return null;
     }
 
