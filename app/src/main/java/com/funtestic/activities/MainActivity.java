@@ -16,6 +16,7 @@ import com.funtestic.R;
 import com.funtestic.activities.user.SignUpActivity;
 import com.funtestic.models.DataBase;
 import com.funtestic.models.Send_HTTP_Request;
+import com.funtestic.models.User;
 
 import org.json.JSONObject;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.main_activity_layout);
 
         ////////// HTTP REQUEST!!!!!/////
-        DataBase.getInstance().getUserByPhone("SDASDASD");
+        DataBase.getInstance().addUserToDb(new User("A","S","d","d","d"));
         ////////////////////////////
 
         signinBtn = (Button) findViewById(R.id.signinBtn);

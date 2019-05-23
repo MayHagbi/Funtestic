@@ -70,6 +70,7 @@ public class User {
 		this.email = email;
 	}
 
+    @Override
 	public String toString() {
         try {
             JSONObject user = new JSONObject();
