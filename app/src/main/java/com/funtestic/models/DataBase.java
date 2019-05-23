@@ -105,6 +105,10 @@ public class DataBase implements IDatabase {
 
     @Override
     public boolean addUserToDb(User user) {
+        jsonParam = new JSONObject();
+
+
+
         return false;
     }
 
