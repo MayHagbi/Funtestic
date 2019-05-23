@@ -15,50 +15,61 @@ import javax.net.ssl.X509TrustManager;
 public class Send_HTTP_Request {
     static final String URL = "http://10.0.2.2:7785";
 
-    public static String send(JSONObject jsonParam, String path) throws Exception {
-        // SSL
-        TrustManager[] trustAllCerts = new TrustManager[]{
-                new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() { return null; }
-                    public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) { }
-                    public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) { }
-                }
-        };
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+    public static String send(JSONObject jsonParam, String path) {
+        try {
+            // SSL
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                    new X509TrustManager() {
+                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                            return null;
+                        }
 
-        // URL && Start Connection
-        //URL obj = new URL(URL + path);
-        URL obj = new URL("http://www.mocky.io/v2/5ce667d33300004b3573150f");
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        // Create Request
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/json");
+                        public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                        }
 
-        // Add Parameters
-        DataOutputStream out = new DataOutputStream(con.getOutputStream());
-        Log.d("XXXX: ",jsonParam.toString());
-        out.writeBytes(jsonParam.toString());
-        out.flush();
-        out.close();
+                        public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                        }
+                    }
+            };
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
-        System.out.println("!!!!!!\n");
-        Log.d("!!!!:::",String.valueOf(con.getResponseCode()));
-        System.out.println("!!!!!2!\n");
+            // URL && Start Connection
+            //URL obj = new URL(URL + path);
+            URL obj = new URL("http://www.mocky.io/v2/5ce67b8733000062007315e6");
+            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+            // Create Request
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Type", "application/json");
 
-        // create buffered reader
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
+            // Add Parameters
+            DataOutputStream out = new DataOutputStream(con.getOutputStream());
+            out.writeBytes(jsonParam.toString());
+            out.flush();
+            out.close();
 
-        // Read The Response
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
+            // in case of bad request code
+            if (con.getResponseCode() != 200) {
+                return "";
+            }
+
+            // create buffered reader
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream()));
+
+            // Read The Response
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+            return response.toString();
+        }catch (Exception e){
+            e.printStackTrace();
+            return "";
         }
-        in.close();
-        con.disconnect();
-        return response.toString();
     }
 }

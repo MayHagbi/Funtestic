@@ -52,18 +52,23 @@ public class DataBase implements IDatabase {
             jsonParam.put("phone_number", phone);
             new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        res = Send_HTTP_Request.send(jsonParam,"/users/get/");
-                        JSONObject json = parseJson(res);
-                        //Log.d("PARSED: ",json.get("id").toString());
-                        Log.d("PARSED2:",json.toString());
-                    } catch (Exception e) {
-                        Log.d("FFFF", String.valueOf(e));
-                    }
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/");
                 }
             }).start();
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        if(!res.equals("")){
+            JSONObject json = parseJson(res);
+            try {
+                return new User(json.get("first_name").toString(), json.get("last_name").toString(),
+                        json.get("phone_number").toString(),
+                        json.get("email").toString(), json.get("password").toString());
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                return null;
+            }
         }
         return null;
     }

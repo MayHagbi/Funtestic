@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public interface IDatabase {
 
     //Get User by email
-    public User getUserByPhone(String phone);
+    public User getUserByPhone(String phone)throws Exception;
 
     //Get child by ID
     public Child getChildById(String id);
