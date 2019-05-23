@@ -36,10 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
 
-        ////////// HTTP REQUEST!!!!!/////
-        DataBase.getInstance().getUserChildren("SDFDSFS");
-        ////////////////////////////
-
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
         userPhone = (EditText) findViewById(R.id.userPhone);
