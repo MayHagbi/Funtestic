@@ -52,18 +52,23 @@ public class DataBase implements IDatabase {
             jsonParam.put("phone_number", phone);
             new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        res = Send_HTTP_Request.send(jsonParam,"/users/get/");
-                        JSONObject json = parseJson(res);
-                        //Log.d("PARSED: ",json.get("id").toString());
-                        Log.d("PARSED2:",json.toString());
-                    } catch (Exception e) {
-                        Log.d("FFFF", String.valueOf(e));
-                    }
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/");
                 }
             }).start();
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        if(!res.equals("")){
+            JSONObject json = parseJson(res);
+            try {
+                return new User(json.get("first_name").toString(), json.get("last_name").toString(),
+                        json.get("phone_number").toString(),
+                        json.get("email").toString(), json.get("password").toString());
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                return null;
+            }
         }
         return null;
     }
@@ -106,21 +111,61 @@ public class DataBase implements IDatabase {
 
     @Override
     public boolean addUserToDb(User user) {
-        jsonParam = new JSONObject();
+        try {
+            jsonParam = new JSONObject(user.toString());
 
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/register");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
 
-
-        return false;
     }
 
     @Override
     public boolean addChildToDb(Child child) {
-        return false;
+        try {
+            jsonParam = new JSONObject(child.toString());
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/children/add");
+                    } catch (Exception e) {
+                       e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
     public boolean addQuizToDb(Quiz quiz) {
-        return false;
+        try {
+            jsonParam = new JSONObject(quiz.toString());
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
