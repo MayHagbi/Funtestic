@@ -53,7 +53,6 @@ public class DataBase implements IDatabase {
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
                     res = Send_HTTP_Request.send(jsonParam,"/users/get/");
-                    Log.d("TTTHERETTT:",res.toString());
                 }
             });
             t1.start();
@@ -113,6 +112,52 @@ public class DataBase implements IDatabase {
 
     @Override
     public ArrayList<Child> getUserChildren(String phone) {
+        ArrayList<Child> childs= new ArrayList<Child>();
+        jsonParam = new JSONObject();
+        try {
+            jsonParam.put("phone_number", phone);
+            Thread t1 = new Thread(new Runnable() {
+                public void run() {
+                    res = Send_HTTP_Request.send(jsonParam,"/children/get/all");
+                }
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(!res.equals("")){
+            try {
+                JSONArray child_json = new JSONArray(res);
+                int size = child_json.length();
+                for(int i=0;i<size;i++){
+                    JSONObject j = (JSONObject)child_json.get(i);
+                    JSONObject parent = (JSONObject)j.get("parent");
+                    Child child = new Child(j.get("id").toString(),
+                            j.get("age").toString(),
+                            j.get("gender").toString(),
+                            j.get("name").toString(),
+                            new User(parent.get("first_name").toString(),
+                                    parent.get("last_name").toString(),
+                                    parent.get("email").toString(),
+                                    parent.get("phone_number").toString(),
+                                    parent.get("password").toString() ));
+                    childs.add(child);
+                    Log.d("TTTT$$$:",child.toString());
+                }
+                return childs;
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                Log.d("TTT:T","EXCEPTION");
+                return null;
+            }
+        }
         return null;
     }
 
