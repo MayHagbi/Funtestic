@@ -92,15 +92,17 @@ public class DataBase implements IDatabase {
 
             new Thread(new Runnable() {
                 public void run() {
-                    try {
+
                         res = Send_HTTP_Request.send(jsonParam,"/register");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                 }
             }).start();
         } catch (JSONException e) {
             e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
         }
         return true;
 
@@ -112,15 +114,16 @@ public class DataBase implements IDatabase {
             jsonParam = new JSONObject(child.toString());
             new Thread(new Runnable() {
                 public void run() {
-                    try {
                         res = Send_HTTP_Request.send(jsonParam,"/children/add");
-                    } catch (Exception e) {
-                       e.printStackTrace();
-                    }
                 }
             }).start();
         } catch (JSONException e) {
             e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
         }
         return true;
     }
@@ -131,15 +134,16 @@ public class DataBase implements IDatabase {
             jsonParam = new JSONObject(quiz.toString());
             new Thread(new Runnable() {
                 public void run() {
-                    try {
                         res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                 }
             }).start();
         } catch (JSONException e) {
             e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
         }
         return true;
     }
