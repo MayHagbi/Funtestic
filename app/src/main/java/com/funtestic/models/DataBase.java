@@ -109,10 +109,11 @@ public class DataBase implements IDatabase {
 
             try {
                 JSONObject parent = parseJson(json.get("parent").toString());
+                JSONObject user = parseJson(parent.get("user").toString());
 
-                User father = new User(parent.get("first_name").toString(), parent.get("last_name").toString(),
+                User father = new User(user.get("first_name").toString(), user.get("last_name").toString(),
                         parent.get("phone_number").toString(),
-                        parent.get("email").toString(), parent.get("password").toString());
+                        user.get("email").toString(), user.get("password").toString());
                 Child newChile =new Child(json.get("gender").toString(),json.get("age").toString()
                         ,json.get("name").toString(),json.get("id_number").toString(),father);
 
