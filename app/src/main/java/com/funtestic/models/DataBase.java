@@ -21,7 +21,7 @@ import java.util.Map;
 public class DataBase implements IDatabase {
 
     static DataBase ins;
-    String res;
+    String res="";
     JSONObject jsonParam;
 
     // private ctor
@@ -50,20 +50,29 @@ public class DataBase implements IDatabase {
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
-            new Thread(new Runnable() {
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
                     res = Send_HTTP_Request.send(jsonParam,"/users/get/");
+                    Log.d("TTTHERETTT:",res.toString());
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return null;
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         if(!res.equals("")){
             JSONObject json = parseJson(res);
             try {
-                return new User(json.get("first_name").toString(), json.get("last_name").toString(),
+                 User usr = new User(json.get("first_name").toString(), json.get("last_name").toString(),
                         json.get("phone_number").toString(),
                         json.get("email").toString(), json.get("password").toString());
+                 return usr;
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -75,8 +84,30 @@ public class DataBase implements IDatabase {
 
     @Override
     public Child getChildById(String id) {
+        try {
+            jsonParam= new JSONObject();
+            jsonParam.put("id_number", id);
+            //--------------------------------
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        res = Send_HTTP_Request.send(jsonParam,"/children/get");
+                        Log.d("YYYYYY",res.toString());
+                        JSONObject json = new JSONObject(res);
 
+                        Log.d("YYYYYY",json.toString());
+                        //"parent":{"first_name":"Haviv","last_name":"Eyal","email":"yoel@gmail.com","phone_number":"089922222","password":"12345678"}}
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+            //--------------------------
 
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
