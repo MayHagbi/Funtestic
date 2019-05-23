@@ -84,7 +84,7 @@ public class Child{
             child.put("age", getAge());
             child.put("gender", getGender());
             child.put("name", getName());
-            child.put("parent", user.toString());
+            child.put("parent", user);
             return child.toString();
         }
         catch (Exception e)
