@@ -68,9 +68,10 @@ public class DataBase implements IDatabase {
         if(!res.equals("")){
             JSONObject json = parseJson(res);
             try {
-                 User usr = new User(json.get("first_name").toString(), json.get("last_name").toString(),
-                        json.get("phone_number").toString(),
-                        json.get("email").toString(), json.get("password").toString());
+                JSONObject user_json = (JSONObject)json.get("user");
+                 User usr = new User(user_json.get("first_name").toString(), user_json.get("last_name").toString(),
+                         json.get("phone_number").toString(),
+                         user_json.get("email").toString(), user_json.get("password").toString());
                  return usr;
             }
             catch (Exception e){
@@ -128,7 +129,7 @@ public class DataBase implements IDatabase {
 
     @Override
     public ArrayList<Child> getUserChildren(String phone) {
-        ArrayList<Child> childs= new ArrayList<Child>();
+        ArrayList<Child> childs = new ArrayList<Child>();
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
@@ -154,17 +155,17 @@ public class DataBase implements IDatabase {
                 for(int i=0;i<size;i++){
                     JSONObject j = (JSONObject)child_json.get(i);
                     JSONObject parent = (JSONObject)j.get("parent");
+                    JSONObject user = (JSONObject)parent.get("user");
                     Child child = new Child(j.get("id").toString(),
                             j.get("age").toString(),
                             j.get("gender").toString(),
                             j.get("name").toString(),
-                            new User(parent.get("first_name").toString(),
-                                    parent.get("last_name").toString(),
-                                    parent.get("email").toString(),
+                            new User(user.get("first_name").toString(),
+                                    user.get("last_name").toString(),
+                                    user.get("email").toString(),
                                     parent.get("phone_number").toString(),
-                                    parent.get("password").toString() ));
+                                    user.get("password").toString() ));
                     childs.add(child);
-                    Log.d("TTTT$$$:",child.getUser().getFirst_name());
                 }
                 return childs;
             }
