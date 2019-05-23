@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public interface IDatabase {
 
     //Get User by email
-    public User getUserByEmail(String email);
+    public User getUserByPhone(String phone);
 
     //Get child by ID
     public Child getChildById(String id);
 
     //Get all User children
-    public ArrayList<Child> getUserChildren(String email);
+    public ArrayList<Child> getUserChildren(String phone);
 
     //Add new user to the database
     public boolean addUserToDb(User user);
@@ -30,7 +30,7 @@ public interface IDatabase {
     public ArrayList<Quiz> getChildQuizGradesFromDb(String id);
 
     //Send Report To Email
-    public boolean sendReportToEmail(String parentEmail, String childId);
+    public boolean sendReportToEmail(String childId);
 
 
 
