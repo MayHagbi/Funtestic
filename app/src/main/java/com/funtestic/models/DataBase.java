@@ -272,6 +272,52 @@ public class DataBase implements IDatabase {
 
     @Override
     public ArrayList<Quiz> getChildQuizGradesFromDb(String id) {
+        ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
+        jsonParam = new JSONObject();
+        try {
+            jsonParam.put("child", id);
+            Thread t1 = new Thread(new Runnable() {
+                public void run() {
+                    res = Send_HTTP_Request.send(jsonParam,"/reports/reports_list");
+                }
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(!res.equals("")){
+            try {
+                JSONArray child_json = new JSONArray(res);
+                int size = child_json.length();
+                for(int i=0;i<size;i++){
+                    JSONObject j = (JSONObject)child_json.get(i);
+                    JSONObject parent = (JSONObject)j.get("parent");
+                    JSONObject user = (JSONObject)parent.get("user");
+                    Child child = new Child(j.get("id").toString(),
+                            j.get("age").toString(),
+                            j.get("gender").toString(),
+                            j.get("name").toString(),
+                            new User(user.get("first_name").toString(),
+                                    user.get("last_name").toString(),
+                                    user.get("email").toString(),
+                                    parent.get("phone_number").toString(),
+                                    user.get("password").toString() ));
+                    childs.add(child);
+                }
+                return childs;
+            }
+            catch (Exception e){
+                e.printStackTrace();
+                Log.d("TTT:T","EXCEPTION");
+                return null;
+            }
+        }
         return null;
     }
 
