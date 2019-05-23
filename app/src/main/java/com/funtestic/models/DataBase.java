@@ -88,15 +88,18 @@ public class DataBase implements IDatabase {
         try {
             jsonParam.put("id_number", id);
             //--------------------------------
-            new Thread(new Runnable() {
+            Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    try {
-                        res = Send_HTTP_Request.send(jsonParam,"/children/get");
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/");
                 }
-            }).start();
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return null;
+            }
             //--------------------------
         } catch (JSONException e) {
             e.printStackTrace();
@@ -110,9 +113,10 @@ public class DataBase implements IDatabase {
                 User father = new User(parent.get("first_name").toString(), parent.get("last_name").toString(),
                         parent.get("phone_number").toString(),
                         parent.get("email").toString(), parent.get("password").toString());
+                Child newChile =new Child(json.get("gender").toString(),json.get("age").toString()
+                        ,json.get("name").toString(),json.get("id_number").toString(),father);
 
-                    return new Child(json.get("gender").toString(),json.get("age").toString(),json.get("name").toString(),json.get("id_number").toString(),father);
-                            //(String gender,String age,String name,String id,User usr)
+                return   newChile;
                 }
             catch (Exception e){
                 e.printStackTrace();
