@@ -1,6 +1,8 @@
 package com.funtestic.models;
 
-import java.util.*; 
+import org.json.JSONObject;
+
+import java.util.*;
 
 
 public class User {
@@ -67,4 +69,19 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String toString() {
+        try {
+            JSONObject user = new JSONObject();
+            user.put("first_name", getFirst_name());
+            user.put("last_name", getLast_name());
+            user.put("email", getEmail());
+            user.put("phone_number", getNumber());
+            user.put("password", getPassword());
+            return user.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "{}";
+        }
+    }
 }

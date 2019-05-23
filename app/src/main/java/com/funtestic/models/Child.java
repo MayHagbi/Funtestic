@@ -2,6 +2,8 @@ package com.funtestic.models;
 
 import android.support.annotation.NonNull;
 
+import org.json.JSONObject;
+
 
 public class Child{
 
@@ -71,5 +73,24 @@ public class Child{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String toString()
+    {
+        try {
+            JSONObject child = new JSONObject();
+            child.put("id_number", getId());
+            child.put("age", getAge());
+            child.put("gender", getGender());
+            child.put("name", getName());
+            child.put("parent", user.toString());
+            return child.toString();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return "{}";
+        }
+
     }
 }
