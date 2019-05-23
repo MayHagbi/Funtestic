@@ -10,14 +10,17 @@ public class Child{
 	private String gender;
 	private String age;
 	private String name;
+    private String id;
 	private User user;
 
 
 
-	public Child (String gender,String age,String name,User usr){
+
+	public Child (String gender,String age,String name,String id,User usr){
         setName(name);
 		setAge(age);
 		setGender(gender);
+		setId(id);
 		user = new User(usr);
 	}
 
@@ -60,5 +63,13 @@ public class Child{
 
     public void setUser(User usr){
 	    user = new User(usr);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
