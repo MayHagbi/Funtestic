@@ -40,25 +40,31 @@ public class Question6Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // no button was selected
+                if (radioGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(Question6Activity.this,
+                            "You must choose one option", Toast.LENGTH_SHORT).show();
+                }
 
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
+                else {
+                    // get selected radio button from radioGroup
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
 
-                // find the radiobutton by returned id
-                choose_btn = (RadioButton) findViewById(selectedId);
+                    // find the radiobutton by returned id
+                    choose_btn = (RadioButton) findViewById(selectedId);
 
-                // save text of answer from button
-                String answer = String.valueOf(choose_btn.getText());
+                    // save text of answer from button
+                    String answer = String.valueOf(choose_btn.getText());
 
-                // save score by answer in shared preferences
-                SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question6");
+                    // save score by answer in shared preferences
+                    SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question6");
 
-                openQuestion7Activity();
+                    openQuestion7Activity();
 
-//                Toast.makeText(Question6Activity.this,
-//                        String.valueOf(table_score_prefs.getInt("question5", -1)), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Question6Activity.this,
+//                            String.valueOf(table_score_prefs.getInt("question5", -1)), Toast.LENGTH_SHORT).show();
+                }
             }
-
         });
 
 

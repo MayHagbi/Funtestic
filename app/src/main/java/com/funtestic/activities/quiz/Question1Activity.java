@@ -38,26 +38,32 @@ public class Question1Activity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                // no button was selected
+                if (radioGroup.getCheckedRadioButtonId() == -1) {
+                    Toast.makeText(Question1Activity.this,
+                            "You must choose one option", Toast.LENGTH_SHORT).show();
+                }
 
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
+                else {
+                    // get selected radio button from radioGroup
+                    int selectedId = radioGroup.getCheckedRadioButtonId();
 
-                // find the radiobutton by returned id
-                choose_btn = (RadioButton) findViewById(selectedId);
+                    // find the radiobutton by returned id
+                    choose_btn = (RadioButton) findViewById(selectedId);
 
-                // save text of answer from button
-                String answer = String.valueOf(choose_btn.getText());
+                    // save text of answer from button
+                    String answer = String.valueOf(choose_btn.getText());
 
-                //score_editor.clear();
-                // save score by answer in shared preferences
-                SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question1");
+                    //score_editor.clear();
+                    // save score by answer in shared preferences
+                    SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question1");
 
-                openQuestion2Activity();
+                    openQuestion2Activity();
 
-//                Toast.makeText(Question1Activity.this,
-//                        String.valueOf(table_score_prefs.getInt("question1", -1)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Question1Activity.this,
+                            String.valueOf(table_score_prefs.getInt("question1", -1)), Toast.LENGTH_SHORT).show();
+                }
             }
-
         });
     }
 
