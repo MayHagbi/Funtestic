@@ -10,17 +10,19 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import com.funtestic.R;
 import com.funtestic.utilities.SharedConstants;
+import java.util.Map;
 
 public class Question13Activity extends AppCompatActivity {
 
+    public static int SUM_OF_QUESTIONS = 13;
     private Button submit_btn;
     private Button prev_btn;
     private RadioGroup radioGroup;
     private RadioButton choose_btn;
     private SharedPreferences table_score_prefs;
+    private float gradeOfChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +61,10 @@ public class Question13Activity extends AppCompatActivity {
                     // save score by answer in shared preferences
                     SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question13");
 
+                    gradeOfChild = calculateScore();
+
 //                    Toast.makeText(Question13Activity.this,
-//                            String.valueOf(table_score_prefs.getInt("question12", -1)), Toast.LENGTH_SHORT).show();
+//                            String.valueOf(gradeOfChild), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -81,5 +85,15 @@ public class Question13Activity extends AppCompatActivity {
         Intent intent = new Intent(this, Question12Activity.class);
         startActivity(intent);
         finish();
+    }
+
+    public float calculateScore() {
+        Map<String, ?> allEntries = table_score_prefs.getAll();
+        int totalScore = 0;
+
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            totalScore += Integer.parseInt(entry.getValue().toString());
+        }
+        return totalScore / SUM_OF_QUESTIONS;
     }
 }
