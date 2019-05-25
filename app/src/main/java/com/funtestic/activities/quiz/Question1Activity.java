@@ -60,8 +60,8 @@ public class Question1Activity extends AppCompatActivity {
 
                     openQuestion2Activity();
 
-                    Toast.makeText(Question1Activity.this,
-                            String.valueOf(table_score_prefs.getInt("question1", -1)), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Question1Activity.this,
+//                            String.valueOf(table_score_prefs.getInt("question1", -1)), Toast.LENGTH_SHORT).show();
                 }
             }
         });
