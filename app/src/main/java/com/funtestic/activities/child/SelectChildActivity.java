@@ -15,7 +15,9 @@ import android.widget.Toast;
 import com.funtestic.R;
 import com.funtestic.adapters.ChildListAdapter;
 import com.funtestic.models.Child;
+import com.funtestic.models.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -31,6 +33,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
     private ListView childListView;
     private SearchView childSearchView;
     private Child selectedChild;
+    User parent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +63,11 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
             }
         });
 
-////check/////////
-        //Intent i = getIntent();
-        //Person dene = (Person)i.getSerializableExtra("Person");
-        //Log.d(TAG,dene.getName());
-/////////////////
-        //addChild();
+        parent = (User)getIntent().getSerializableExtra("parent");
 
+        Log.d(TAG,parent.getFirst_name());
+
+        addChild();
         setupSearchView();
     }
 
@@ -110,7 +111,9 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
     public void onClick(View view) {
         switch(view.getId()) {
             case R.id.btnAddChild:
-                startActivityForResult(new Intent(SelectChildActivity.this, AddChildActivity.class), REQUEST_ADDCHILD);
+                Intent intent = new Intent(SelectChildActivity.this, AddChildActivity.class);
+                intent.putExtra("parent", parent);
+                startActivityForResult(intent, REQUEST_ADDCHILD);
                 break;
 
             case R.id.btnSelectChild:
@@ -132,31 +135,30 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         childSearchView.setSubmitButtonEnabled(true);
         childSearchView.setQueryHint("Search Here");
     }
-
-//    private void addChild(){
-//        ///////////////////for check/////////////////////
-//        Child john = null;
-//        Child ron = null;
-//        Child mira = null;
-//        Child dana = null;
-//        Child mike = null;
-//        try {
-//            john = new Child("John", "Male", "5", "1234");
-//            ron = new Child("Ron", "Male", "8", "2314");
-//            mira = new Child("Mira", "Female", "3", "3124");
-//            dana = new Child("Dana", "Female", "2", "4123");
-//            mike = new Child("Mike", "Male", "8", "9314");
-//
-//            childsList.add(john);
-//            childsList.add(ron);
-//            childsList.add(mira);
-//            childsList.add(dana);
-//            childsList.add(mike);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        ///////////////////////////////////////////////
+    private void addChild() {
         //TODO add childs of the appropriate father from database to childsList
+        Child john = null;
+        Child ron = null;
+        Child mira = null;
+        Child dana = null;
+        Child mike = null;
+        try {
+            john = new Child("John", "Male", "5", "1234",parent);
+            ron = new Child("Ron", "Male", "8", "2314",parent);
+            mira = new Child("Mira", "Female", "3", "3124",parent);
+            dana = new Child("Dana", "Female", "2", "4123",parent);
+            mike = new Child("Mike", "Male", "8", "9314",parent);
+
+            childsList.add(john);
+            childsList.add(ron);
+            childsList.add(mira);
+            childsList.add(dana);
+            childsList.add(mike);
+        } catch (Exception e) {
+            e.printStackTrace();
+       }
+
+    }
 }
 
 

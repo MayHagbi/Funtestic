@@ -2,10 +2,11 @@ package com.funtestic.models;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.*;
 
 
-public class User {
+public class User implements Serializable {
 	private String first_name ;
 	private String last_name ;
 	private String number; //out of json

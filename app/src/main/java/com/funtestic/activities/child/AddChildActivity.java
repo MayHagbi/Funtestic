@@ -11,18 +11,23 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import com.funtestic.R;
 import com.funtestic.models.Child;
+import com.funtestic.models.User;
+
+import java.io.Serializable;
 
 
-public class AddChildActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddChildActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText etName;
     private EditText etAge;
     private EditText etID;
     private Spinner genderSpinner;
     private Button btnSubChild;
+    User parent;
     private static final String TAG = "Main";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_layout);
 
@@ -38,6 +43,8 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.genderList));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(myAdapter);
+
+        parent = (User)getIntent().getSerializableExtra("parent");
     }
 
     @Override
@@ -56,7 +63,9 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void addChild() {
+
         if (etAge.getText().toString().length()!=0 && etID.getText().toString().length()!=0 && etName.getText().toString().length()!=0) {
+
             Intent intent = new Intent(AddChildActivity.this, SelectChildActivity.class);
             Child child = null;
 
@@ -65,11 +74,11 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
                 String gender = genderSpinner.getSelectedItem().toString();
                 String age = etAge.getText().toString();
                 String id =  etID.getText().toString();
-                //child = new Child(name, gender, age, id);
+                child = new Child(name, gender, age, id, parent);
 
                 //TODO add incomingChild object to child database
 
-                //intent.putExtra("child", child);
+                intent.putExtra("child", child);
                 setResult(RESULT_OK, intent);
 
             } catch (Exception e) {

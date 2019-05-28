@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.funtestic.R;
 import com.funtestic.models.Child;
+import com.funtestic.models.User;
 
 import java.util.ArrayList;
 
@@ -53,14 +54,16 @@ public class ChildListAdapter extends ArrayAdapter<Child> implements Filterable 
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         //get the child information
         String name = getItem(position).getName();
+        String id = getItem(position).getId();
         String gender = getItem(position).getGender();
         String age = getItem(position).getAge();
+        User user = getItem(position).getUser();
         //String id = getItem(position).getId();
 
         //Create the child object with the information
         Child child = null;
         try {
-            //child = new Child(name,gender,age,id);
+            child = new Child(name,gender,age,id,user);
         } catch (Exception e) {
             e.printStackTrace();
         }
