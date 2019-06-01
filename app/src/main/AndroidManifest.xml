@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.funtestic">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".utilities.FuntesticApplication"
         android:allowBackup="true"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +15,15 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.TwoStepVerificationActivity"></activity>
+        <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.TwoStepVerificationActivity"/>
         <activity android:name=".activities.quiz.Question13Activity" />
         <activity android:name=".activities.quiz.Question12Activity" />
         <activity android:name=".activities.quiz.Question11Activity" />
@@ -25,14 +37,6 @@
         <activity android:name=".activities.quiz.Question3Activity" />
         <activity android:name=".activities.child.AddChildActivity" />
         <activity android:name=".activities.child.SelectChildActivity" />
-        <activity android:name=".activities.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".activities.quiz.Question1Activity" />
         <activity android:name=".activities.quiz.Question2Activity" />
         <activity
