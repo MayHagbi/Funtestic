@@ -14,6 +14,7 @@ import com.funtestic.R;
 import com.funtestic.activities.quiz.Question1Activity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SelectQuizCategory extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,17 +38,7 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
     }
 
     private ArrayList<String> getCategoriesList() {
-        ArrayList<String> categories = new ArrayList<>();
-
-        //TODO: get categories
-
-        categories.add("1");
-        categories.add("2");
-        categories.add("3");
-        categories.add("4");
-        categories.add("5");
-
-        return categories;
+        return new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.category_array)));
     }
 
     @Override
@@ -59,8 +50,6 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
                     Toast.makeText(this, R.string.must_select_category, Toast.LENGTH_LONG).show();
                     break;
                 }
-
-                //TODO: select the quiz by the category
 
                 Intent intent = new Intent(SelectQuizCategory.this, Question1Activity.class);
                 startActivity(intent);
