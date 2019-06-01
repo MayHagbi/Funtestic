@@ -21,12 +21,6 @@
             <!--android:src="@drawable/logo"-->
             <!--android:layout_gravity="center_horizontal" />-->
 
-        <EditText android:id="@+id/input_id_sign_up"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/enter_id" />
-
         <!--  Name Label -->
         <!--<android.support.design.widget.TextInputLayout-->
             <!--android:layout_width="match_parent"-->
@@ -60,7 +54,7 @@
         <EditText android:id="@+id/input_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
+            android:inputType="phone"
             android:hint="@string/please_enter_phone" />
 
         <!-- Password Label -->
@@ -78,6 +72,12 @@
             android:inputType="textPassword"
             android:hint="@string/enter_password"
             android:gravity="right"/>
+
+        <EditText android:id="@+id/input_email_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/enter_email" />
 
         <!-- SignUp Button -->
         <!--<android.support.v7.widget.AppCompatButton-->

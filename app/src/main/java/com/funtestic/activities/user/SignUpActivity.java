@@ -10,40 +10,35 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.funtestic.R;
+import com.funtestic.utilities.Validations;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-//    @BindView(R.id.input_name)
-    private EditText firstName;
-    private EditText lastName;
-//    @BindView(R.id.input_email)
-    private EditText phoneNumber;
-//    @BindView(R.id.input_password)
-    private EditText password;
-//    @BindView(R.id.btn_signUp)
+    private EditText etFirstName;
+    private EditText etLastName;
+    private EditText etPhoneNumber;
+    private EditText etPassword;
+    private EditText etEmail;
     private Button btnSignUp;
-//    @BindView(R.id.link_login)
-    private TextView loginLink;
-    private EditText etId;
+    private TextView tvLoginLink;
     private ProgressDialog signUpProgressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_activity_layout);
-//        ButterKnife.bind(this);
 
-        firstName = (EditText) findViewById(R.id.input_firstName);
-        lastName = (EditText) findViewById(R.id.input_lastName);
-        phoneNumber = (EditText) findViewById(R.id.input_phoneNumber);
-        password = (EditText) findViewById(R.id.input_password_sign_up);
-        etId = (EditText) findViewById(R.id.input_id_sign_up);
-
+        etFirstName = (EditText) findViewById(R.id.input_firstName);
+        etLastName = (EditText) findViewById(R.id.input_lastName);
+        etPhoneNumber = (EditText) findViewById(R.id.input_phoneNumber);
+        etPassword = (EditText) findViewById(R.id.input_password_sign_up);
+        etEmail = (EditText) findViewById(R.id.input_email_sign_up);
         btnSignUp = (Button) findViewById(R.id.btn_sign_up);
-        loginLink = (TextView) findViewById(R.id.link_login_sign_up_activity);
+        tvLoginLink = (TextView) findViewById(R.id.link_login_sign_up_activity);
+
         signUpProgressDialog = new ProgressDialog(this);
         btnSignUp.setOnClickListener(this);
-        loginLink.setOnClickListener(this);
+        tvLoginLink.setOnClickListener(this);
     }
 
     public void signUp() {
@@ -54,7 +49,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        //TODO: ProgressDialog deprecated, try to use progressbar
         signUpProgressDialog.setIndeterminate(true);
         signUpProgressDialog.setMessage(getString(R.string.creating_account));
         signUpProgressDialog.show();
@@ -69,8 +63,35 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public boolean validate() {
-        //TODO: call validation functions from utilities
-        return false;
+        boolean valid = true;
+
+        String email = etEmail.getText().toString();
+        String firstName = etFirstName.getText().toString();
+        String lastName = etLastName.getText().toString();
+        String password = etPassword.getText().toString();
+        String phoneNumber = etPhoneNumber.getText().toString();
+
+        if (!Validations.isEmailValid(email)) {
+            valid = false;
+            etEmail.setError(getString(R.string.email_not_valid));
+        }
+        if (!Validations.isFullNameValid(firstName)) {
+            valid = false;
+            etFirstName.setError(getString(R.string.enter_first_name));
+        }
+        if (!Validations.isFullNameValid(lastName)) {
+            valid = false;
+            etLastName.setError(getString(R.string.enter_last_name));
+        }
+        if (!Validations.isPasswordValid(password)) {
+            valid = false;
+            etPassword.setError(getString(R.string.password_too_short));
+        }
+        if (!Validations.isValidPhone(phoneNumber)) {
+            valid = false;
+            etPhoneNumber.setError((getString(R.string.phone_not_valid)));
+        }
+        return valid;
     }
 
     @Override
@@ -91,11 +112,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean addUserToDB() {
-        String first_name = firstName.getText().toString();
-        String last_name = lastName.getText().toString();
-        String phone = phoneNumber.getText().toString();
-        String pass = password.getText().toString();
-        String id = etId.getText().toString();
+        String first_name = etFirstName.getText().toString();
+        String last_name = etLastName.getText().toString();
+        String phone = etPhoneNumber.getText().toString();
+        String pass = etPassword.getText().toString();
+        String email = etEmail.getText().toString();
 
         // TODO: add the user to DB
 

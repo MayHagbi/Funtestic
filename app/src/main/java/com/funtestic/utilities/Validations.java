@@ -66,6 +66,7 @@ public class Validations {
     }
 
     public static boolean isValidPhone(String phoneNumber) {
-        return !(phoneNumber.isEmpty() || !Patterns.PHONE.matcher(phoneNumber).matches());
+        return !(phoneNumber == null || phoneNumber.isEmpty() || phoneNumber.length() < 6 ||
+                phoneNumber.length() > 13 || !Patterns.PHONE.matcher(phoneNumber).matches());
     }
 }
