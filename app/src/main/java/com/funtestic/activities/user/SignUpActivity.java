@@ -130,6 +130,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         signUpProgressDialog.show();
 
         User tempU = new User(first_name,last_name,phone,email,pass);
+        signUpProgressDialog.dismiss();
         return DataBase.getInstance().addUserToDb(tempU);
 
     }
