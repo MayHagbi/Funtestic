@@ -19,6 +19,8 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
     private String phone ;
     private String password ;
     private String token ;
+    private String TwoFA_pass ;
+
     private DataBase db ;
 
 

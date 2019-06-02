@@ -109,11 +109,12 @@ public class DataBase implements IDatabase {
         return false;
     }
 
-    public String TwoStepVerification(String phone,String password ){
+    public String TwoStepVerification(String phone,String password , String TwoFA_pass ){
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
             jsonParam.put("password",password);
+            jsonParam.put("2fa_pass",TwoFA_pass);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
                     res = Send_HTTP_Request.send(jsonParam,"/2fa/","POST" ,null);
