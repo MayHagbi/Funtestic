@@ -19,7 +19,7 @@ public interface IDatabase {
     public ArrayList<Child> getUserChildren(String phone ,final String token);
 
     //Add new user to the database
-    public boolean addUserToDb(User user,final String token);
+    public boolean addUserToDb(User user);
 
     //Add new child to the database
     public boolean addChildToDb(Child child,final String token);
