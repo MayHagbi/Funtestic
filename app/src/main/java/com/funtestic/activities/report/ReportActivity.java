@@ -1,14 +1,24 @@
 package com.funtestic.activities.report;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.funtestic.R;
+import com.funtestic.activities.MainActivity;
+import com.funtestic.activities.mainMenu.MainMenuActivity;
+import com.funtestic.models.Child;
+import com.funtestic.models.DataBase;
+import com.funtestic.models.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +26,16 @@ import java.util.List;
 public class ReportActivity extends AppCompatActivity {
 
     // only to test1!!!!!!!!
-    private String parent ;
-    private List<String> childs = new ArrayList<String>();
 
-   //!!!! !!!!!!!!!!!!!!!!!!!!!!
+    private User parent ;
+    private String token ;
+
+    private SharedPreferences sp;
+    private String phone;
+
+    private ArrayList<Child> childs = new ArrayList<Child>();
+    private DataBase db = DataBase.getInstance();
+    private ArrayList<String> childlist = new ArrayList<String>();
 
     private Spinner chooseChild;
     private TextView parentName;
@@ -31,15 +47,17 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        //for test!!!!!!
-        parent="סמי";
-        childs.add("יוני");
-        childs.add("שלומי");
-        childs.add("יואל");
-        childs.add("ראובן");
-        childs.add("גלעד");
-        childs.add("מאי");
-        //!!!! !!!!!!!!!!!!!!!!!!!!!!
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        phone= sp.getString("phone","DEFAULT");
+        token= sp.getString("token", "DEFAULT");
+        parent = db.getUserByPhone(phone,token);
+        childs=db.getUserChildren(phone,token);
+
+        for(int i=0; i<childs.size() ; i++){
+            childlist.add(childs.get(i).getName());
+        }
+
+
 
         chooseChild = (Spinner) findViewById(R.id.reportChooseChildSpinner);
         parentName= (TextView) findViewById(R.id.reportNameTextView);
@@ -47,11 +65,11 @@ public class ReportActivity extends AppCompatActivity {
 
 
         //Setting the name of the Parent.
-        parentName.setText(R.string.hello+parent);
+        parentName.setText(R.string.hello+parent.getFirst_name() +parent.getLast_name());
 
         //filing the spinner with names
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,childs);
+                new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,childlist);
         chooseChild.setAdapter(adapter);
         //------------------------------
 
@@ -62,7 +80,21 @@ public class ReportActivity extends AppCompatActivity {
                 //What to do when its pressd
 
                 //put child name on the report
-                report.setText(childs.get(position));//here can chang txt in the report
+
+                if(db.sendReportToEmail(childs.get(position).getId(),token))
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "The report was successfully sent to your email";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    finish();
+                    startActivity(new Intent(getApplicationContext() , MainMenuActivity.class));
+                }
+                else{
+                    report.setText("שגיאה לא ניתן לשלוח דוח");//here can chang txt in the report
+                }
                 //-----------------------------
             }
 

@@ -125,18 +125,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         signUpProgressDialog.setMessage(getResources().getString(R.string.please_wait));
         signUpProgressDialog.show();
 
-        //User tempU = new User("gilad","guralnik","0542060823","gilad@gmail.com","G45!4fj4%%%3D"); //MOCK
-
         User tempU = new User(first_name,last_name,phone,email,pass);
-        boolean b = DataBase.getInstance().addUserToDb(tempU);
-        if(b)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return DataBase.getInstance().addUserToDb(tempU);
 
     }
 }

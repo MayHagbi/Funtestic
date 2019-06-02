@@ -10,25 +10,25 @@ import java.util.ArrayList;
 public interface IDatabase {
 
     //Get User by email
-    public User getUserByPhone(String phone)throws Exception;
+    public User getUserByPhone(String phone ,final String token)throws Exception;
 
     //Get child by ID
-    public Child getChildById(String id);
+    public Child getChildById(String id ,final String token);
 
     //Get all User children
-    public ArrayList<Child> getUserChildren(String phone);
+    public ArrayList<Child> getUserChildren(String phone ,final String token);
 
     //Add new user to the database
-    public boolean addUserToDb(User user);
+    public boolean addUserToDb(User user,final String token);
 
     //Add new child to the database
-    public boolean addChildToDb(Child child);
+    public boolean addChildToDb(Child child,final String token);
 
     //Add quiz to the database
-    public boolean addQuizToDb(Quiz quiz);
+    public boolean addQuizToDb(Quiz quiz ,final String token);
 
     //Send Report To Email
-    public boolean sendReportToEmail(String childId);
+    public boolean sendReportToEmail(String childId ,final String token);
 
     //Check if user is valid for login purpose
     public boolean login(String phone,String password);
