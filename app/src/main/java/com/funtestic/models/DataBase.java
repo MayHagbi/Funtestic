@@ -46,13 +46,13 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public User getUserByPhone(String phone){
+    public User getUserByPhone(String phone, final String token){
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/users/get/","POST");
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/","POST",token);
                 }
             });
             t1.start();
@@ -83,14 +83,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public boolean login(String phone,String password){
+    public boolean login(String phone,String password ){
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
             jsonParam.put("password",password);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/login/","POST");
+                    res = Send_HTTP_Request.send(jsonParam,"/login/","POST" ,null);
                 }
             });
             t1.start();
@@ -110,14 +110,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public Child getChildById(String id) {
+    public Child getChildById(String id ,final String token ) {
         jsonParam = new JSONObject();
         try {
             jsonParam.put("id_number", id);
             //--------------------------------
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/users/get/","POST");
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/","POST",token);
                 }
             });
             t1.start();
@@ -156,14 +156,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public ArrayList<Child> getUserChildren(String phone) {
+    public ArrayList<Child> getUserChildren(String phone ,final String token) {
         ArrayList<Child> childs = new ArrayList<Child>();
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/children/get/all/","POST");
+                    res = Send_HTTP_Request.send(jsonParam,"/children/get/all/","POST" ,token);
                 }
             });
             t1.start();
@@ -207,14 +207,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public boolean addUserToDb(User user) {
+    public boolean addUserToDb(User user ,final String token) {
         try {
             jsonParam = new JSONObject(user.toString());
 
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                        res = Send_HTTP_Request.send(jsonParam,"/register/","PUT");
+                        res = Send_HTTP_Request.send(jsonParam,"/register/","PUT" ,token);
                         Log.d("TTTT","res"+res);
                 }
             });
@@ -239,14 +239,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public boolean addChildToDb(Child child) {
+    public boolean addChildToDb(Child child ,final String token) {
         try {
             jsonParam = new JSONObject(child.toString());
 
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                    res = Send_HTTP_Request.send(jsonParam,"/children/add/","PUT");
+                    res = Send_HTTP_Request.send(jsonParam,"/children/add/","PUT" ,token);
                 }
             });
             t1.start();
@@ -269,14 +269,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public boolean addQuizToDb(Quiz quiz) {
+    public boolean addQuizToDb(Quiz quiz ,final String token) {
         try {
             jsonParam = new JSONObject(quiz.toString());
 
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                    res = Send_HTTP_Request.send(jsonParam,"/quiz/add/","PUT");
+                    res = Send_HTTP_Request.send(jsonParam,"/quiz/add/","PUT" ,token);
                 }
             });
             t1.start();
@@ -300,7 +300,7 @@ public class DataBase implements IDatabase {
 
 
     @Override
-    public boolean sendReportToEmail(String childId) {
+    public boolean sendReportToEmail(String childId ,final String token) {
         // TODO: send report
         return false;
     }
