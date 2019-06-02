@@ -58,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         if(!addUserToDB()) {
             onSignUpFailed();
+            return;
         }
 
         btnSignUp.setEnabled(true);
