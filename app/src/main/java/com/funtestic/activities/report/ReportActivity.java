@@ -50,8 +50,8 @@ public class ReportActivity extends AppCompatActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
-        parent = db.getUserByPhone(phone);
-        childs=db.getUserChildren(phone);
+        parent = db.getUserByPhone(phone,token);
+        childs=db.getUserChildren(phone,token);
 
         for(int i=0; i<childs.size() ; i++){
             childlist.add(childs.get(i).getName());
@@ -81,7 +81,7 @@ public class ReportActivity extends AppCompatActivity {
 
                 //put child name on the report
 
-                if(db.sendReportToEmail(childs.get(position).getId()))
+                if(db.sendReportToEmail(childs.get(position).getId(),token))
                 {
                     Context context = getApplicationContext();
                     CharSequence text = "The report was successfully sent to your email";
