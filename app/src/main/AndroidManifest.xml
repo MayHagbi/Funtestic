@@ -23,6 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.mainMenu.MainMenuActivity"/>
         <activity android:name=".activities.TwoStepVerificationActivity"/>
         <activity android:name=".activities.quiz.Question13Activity" />
         <activity android:name=".activities.quiz.Question12Activity" />

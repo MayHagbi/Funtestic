@@ -26,8 +26,6 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
     private String TwoFA_pass ;
     private SharedPreferences sp;
 
-    private DataBase db ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +51,7 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
                 phone=getIntent().getStringExtra("phone");
                 password=getIntent().getStringExtra("password");
 
-                token=db.TwoStepVerification(phone,password,TwoFA_pass);
+                token=DataBase.getInstance().TwoStepVerification(phone,password,TwoFA_pass);
                 if(token == null){
                     //TODO ERROR
                     Context context = getApplicationContext();
