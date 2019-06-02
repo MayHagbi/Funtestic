@@ -46,7 +46,7 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public User getUserByPhone(String phone){
+    public User getUserByPhone(String phone,String token){
         jsonParam = new JSONObject();
         try {
             jsonParam.put("phone_number", phone);
