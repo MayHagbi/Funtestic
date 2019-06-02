@@ -47,12 +47,17 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void signUp() {
         btnSignUp.setEnabled(false);
 
-        if (!validate() || !addUserToDB() ) {
+        if (!validate() ) {
             onSignUpFailed();
-            Log.d("TTTT","HIS FINISH");
+            Log.d("TTTT","HIS validate FINISH");
             return;
         }
 
+        if (!addUserToDB() ) {
+            onSignUpFailed();
+            Log.d("TTTT","HIS  addUserToDB FINISH");
+            return;
+        }
         Log.d("TTTT","dont need to by here ");
 
         signUpProgressDialog.setMessage(getResources().getString(R.string.please_wait));
@@ -124,6 +129,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         String email = etEmail.getText().toString();
 
         User tempU = new User(first_name,last_name,phone,email,pass);
+
         return DataBase.getInstance().addUserToDb(tempU);
 
     }

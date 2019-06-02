@@ -264,6 +264,7 @@ public class DataBase implements IDatabase {
         }
         if(res.equals(""))
         {
+            Log.d("TTTTT","FALSEEEE");
             return false;
         }
         return true;

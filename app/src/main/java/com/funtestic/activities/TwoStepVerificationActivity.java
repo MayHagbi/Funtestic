@@ -50,14 +50,10 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
 
             case R.id.buttonSend2stepVerification:
                 TwoFA_pass = number.getText().toString();
-                Log.d("TTTTFA",TwoFA_pass);
                 phone=getIntent().getStringExtra("phone");
-                Log.d("TTTPHONE",TwoFA_pass);
                 password=getIntent().getStringExtra("password");
-                Log.d("TTTPASSWORD",TwoFA_pass);
 
                 token=db.TwoStepVerification(phone,password,TwoFA_pass);
-                Log.d("TTTTOKEN",TwoFA_pass);
                 if(token == null){
                     //TODO ERROR
                     Context context = getApplicationContext();

@@ -25,7 +25,6 @@ import java.util.List;
 
 public class ReportActivity extends AppCompatActivity {
 
-    // only to test1!!!!!!!!
 
     private User parent ;
     private String token ;
