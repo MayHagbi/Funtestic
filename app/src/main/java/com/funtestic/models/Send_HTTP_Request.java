@@ -42,7 +42,9 @@ public class Send_HTTP_Request {
             // Create Request
             con.setRequestMethod(methodType);
             con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("Authorization","Token "+token);
+            if(token!=null) {
+                con.setRequestProperty("Authorization","Token "+token);
+            }
 
             // Add Parameters
             DataOutputStream out = new DataOutputStream(con.getOutputStream());
