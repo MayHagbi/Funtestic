@@ -50,7 +50,7 @@ public class Send_HTTP_Request {
             out.close();
 
             // in case of bad request code
-            if (con.getResponseCode() != 200) {
+            if (con.getResponseCode() != 200 && con.getResponseCode() != 201) {
                 return "";
             }
 

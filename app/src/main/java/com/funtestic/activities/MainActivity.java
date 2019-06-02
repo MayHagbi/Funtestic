@@ -113,13 +113,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(db.login(phone,password)) //user is valid
         {
-            progressDialog.setMessage(getResources().getString(R.string.please_wait));
-            progressDialog.show();
-//            Intent intent = new Intent(getBaseContext(), TwoStepVerificationActivity.class);
-//            intent.putExtra("phone", phone);
-//            intent.putExtra("password", password);
-//            startActivity(intent);
-//            this.finish();
+            Intent intent = new Intent(getBaseContext(), TwoStepVerificationActivity.class);
+            intent.putExtra("phone", phone);
+            intent.putExtra("password", password);
+            startActivity(intent);
+            this.finish();
         }
         else //bad username/password
         {
