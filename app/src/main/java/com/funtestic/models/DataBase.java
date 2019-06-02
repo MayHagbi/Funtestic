@@ -187,7 +187,8 @@ public class DataBase implements IDatabase {
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                        res = Send_HTTP_Request.send(jsonParam,"/register");
+                        res = Send_HTTP_Request.send(jsonParam,"/register/");
+                        Log.d("TTTT","res"+res);
                 }
             });
             t1.start();

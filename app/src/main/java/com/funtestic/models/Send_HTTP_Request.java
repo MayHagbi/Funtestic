@@ -13,7 +13,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Send_HTTP_Request {
-    static final String URL = "http://10.0.2.2:7785";
+    static final String URL = "http://10.0.2.2:8001";
 
     public static String send(JSONObject jsonParam, String path) {
         try {
@@ -36,8 +36,8 @@ public class Send_HTTP_Request {
             HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
 
             // URL && Start Connection
-            //URL obj = new URL(URL + path);
-            URL obj = new URL("http://www.mocky.io/v2/5ce697b033000098017316e6");
+            URL obj = new URL(URL + path);
+            //URL obj = new URL("http://www.mocky.io/v2/5ce697b033000098017316e6");
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             // Create Request
             con.setRequestMethod("POST");
