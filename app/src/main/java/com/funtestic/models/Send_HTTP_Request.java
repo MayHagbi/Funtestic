@@ -13,7 +13,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Send_HTTP_Request {
-    static final String URL = "http://10.0.2.2:8001";
+    static final String URL = "http://10.0.2.2:8002";
 
     public static String send(JSONObject jsonParam, String path,String methodType,String token) {
         try {
