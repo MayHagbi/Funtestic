@@ -109,6 +109,38 @@ public class DataBase implements IDatabase {
         return false;
     }
 
+    public String TwoStepVerification(String phone,String password , String TwoFA_pass ){
+        jsonParam = new JSONObject();
+        try {
+            jsonParam.put("phone_number", phone);
+            jsonParam.put("password",password);
+            jsonParam.put("2fa_pass",TwoFA_pass);
+            Thread t1 = new Thread(new Runnable() {
+                public void run() {
+                    res = Send_HTTP_Request.send(jsonParam,"/2fa/","POST" ,null);
+                }
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return null;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(!res.equals("")){
+            JSONObject json = parseJson(res);
+            try {
+                return json.get("token").toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return null;
+    }
     @Override
     public Child getChildById(String id ,final String token ) {
         jsonParam = new JSONObject();
