@@ -4,12 +4,15 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.funtestic.R;
+import com.funtestic.models.DataBase;
+import com.funtestic.models.User;
 import com.funtestic.utilities.Validations;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -120,6 +123,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         // TODO: add the user to DB
 
+        User tempU = new User("gilad","guralnik","0542060823","gilad@gmail.com","G45!4fj4%%%3D");
+        boolean b = DataBase.getInstance().addUserToDb(tempU);
+    if(b){
+        Log.d("TTTT","OK");
+    }
+    else{
+        Log.d("TTTT","NO");
+    }
         return false;
     }
 }
