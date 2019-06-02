@@ -60,6 +60,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         signUpProgressDialog.setMessage(getResources().getString(R.string.please_wait));
         signUpProgressDialog.show();
+        try {
+            // Simulate network access.
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         finish();
     }
 
