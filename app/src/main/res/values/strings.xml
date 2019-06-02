@@ -67,6 +67,8 @@
     <string name="go_to_quiz">עבור לשאלון</string>
     <string name="must_select_category">יש לבחור קטגוריה</string>
     <string name="no_selected_child">לא נבחר ילד</string>
+    <string name="bad_username_password">שם משתמש או סיסמא לא נכונים, אנא נסה שנית</string>
+    <string name="please_wait">מבצע נסיון התחברות, אנא המתן</string>
     <string-array name="genderList">
         <item>זכר</item>
         <item>נקבה</item>

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.funtestic.R;
 import com.funtestic.activities.user.SignUpActivity;
 import com.funtestic.models.DataBase;
@@ -107,8 +108,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
         progressDialog.show();
 
-        //TODO Search for user name and password in data base, Encrypt password with SHA
-        // Show message in case of bad username/password
+        DataBase db = DataBase.getInstance();
+
+
+        if(db.login(phone,password)) //user is valid
+        {
+            progressDialog.setMessage(getResources().getString(R.string.please_wait));
+            progressDialog.show();
+//            Intent intent = new Intent(getBaseContext(), TwoStepVerificationActivity.class);
+//            intent.putExtra("phone", phone);
+//            intent.putExtra("password", password);
+//            startActivity(intent);
+//            this.finish();
+        }
+        else //bad username/password
+        {
+            progressDialog.setMessage(getResources().getString(R.string.bad_username_password));
+            progressDialog.show();
+        }
 
     }
 
