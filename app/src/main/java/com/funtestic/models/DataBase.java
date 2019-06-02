@@ -52,7 +52,7 @@ public class DataBase implements IDatabase {
             jsonParam.put("phone_number", phone);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/users/get/");
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/","POST");
                 }
             });
             t1.start();
@@ -90,7 +90,7 @@ public class DataBase implements IDatabase {
             jsonParam.put("password",password);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/login");
+                    res = Send_HTTP_Request.send(jsonParam,"/login/","POST");
                 }
             });
             t1.start();
@@ -117,7 +117,7 @@ public class DataBase implements IDatabase {
             //--------------------------------
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/users/get/");
+                    res = Send_HTTP_Request.send(jsonParam,"/users/get/","POST");
                 }
             });
             t1.start();
@@ -163,7 +163,7 @@ public class DataBase implements IDatabase {
             jsonParam.put("phone_number", phone);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/children/get/all");
+                    res = Send_HTTP_Request.send(jsonParam,"/children/get/all/","POST");
                 }
             });
             t1.start();
@@ -214,7 +214,7 @@ public class DataBase implements IDatabase {
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                        res = Send_HTTP_Request.send(jsonParam,"/register/");
+                        res = Send_HTTP_Request.send(jsonParam,"/register/","PUT");
                         Log.d("TTTT","res"+res);
                 }
             });
@@ -246,7 +246,7 @@ public class DataBase implements IDatabase {
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                    res = Send_HTTP_Request.send(jsonParam,"/children/add");
+                    res = Send_HTTP_Request.send(jsonParam,"/children/add/","PUT");
                 }
             });
             t1.start();
@@ -276,7 +276,7 @@ public class DataBase implements IDatabase {
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                    res = Send_HTTP_Request.send(jsonParam,"/quiz/add");
+                    res = Send_HTTP_Request.send(jsonParam,"/quiz/add/","PUT");
                 }
             });
             t1.start();
@@ -298,49 +298,10 @@ public class DataBase implements IDatabase {
         return true;
     }
 
-    @Override
-    public ArrayList<Report> getChildQuizGradesFromDb(String id) {
-        ArrayList<Report> reports = new ArrayList<Report>();
-        jsonParam = new JSONObject();
-        try {
-            jsonParam.put("child", id);
-            Thread t1 = new Thread(new Runnable() {
-                public void run() {
-                    res = Send_HTTP_Request.send(jsonParam,"/reports/reports_list");
-                }
-            });
-            t1.start();
-            try {
-                t1.join();
-            }
-            catch (Exception e){
-                return null;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if(!res.equals("")){
-            try {
-                JSONArray report_list = new JSONArray(res);
-                int size = report_list.length();
-                for(int i=0;i<size;i++){
-                    JSONObject j = (JSONObject)report_list.get(i);
-                    Report repo = new Report(j.get("id").toString(),j.get("create_at").toString());
-                    reports.add(repo);
-                }
-                return reports;
-            }
-            catch (Exception e){
-                e.printStackTrace();
-                Log.d("TTT:T","EXCEPTION");
-                return null;
-            }
-        }
-        return null;
-    }
 
     @Override
     public boolean sendReportToEmail(String childId) {
+        // TODO: send report
         return false;
     }
 }

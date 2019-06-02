@@ -27,9 +27,6 @@ public interface IDatabase {
     //Add quiz to the database
     public boolean addQuizToDb(Quiz quiz);
 
-    //Get child quiz grades from database
-    public ArrayList<Report> getChildQuizGradesFromDb(String id);
-
     //Send Report To Email
     public boolean sendReportToEmail(String childId);
 
