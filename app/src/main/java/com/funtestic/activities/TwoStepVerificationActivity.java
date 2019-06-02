@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,11 +50,14 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
 
             case R.id.buttonSend2stepVerification:
                 TwoFA_pass = number.getText().toString();
+                Log.d("TTTTFA",TwoFA_pass);
                 phone=getIntent().getStringExtra("phone");
+                Log.d("TTTPHONE",TwoFA_pass);
                 password=getIntent().getStringExtra("password");
+                Log.d("TTTPASSWORD",TwoFA_pass);
 
                 token=db.TwoStepVerification(phone,password,TwoFA_pass);
-
+                Log.d("TTTTOKEN",TwoFA_pass);
                 if(token == null){
                     //TODO ERROR
                     Context context = getApplicationContext();

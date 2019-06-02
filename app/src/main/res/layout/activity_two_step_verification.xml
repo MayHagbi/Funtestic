@@ -21,7 +21,6 @@
         android:layout_height="76dp"
         android:ems="10"
         android:inputType="number"
-        android:text="הכנס את המספרים"
         android:textSize="18sp" />
 
     <Button
