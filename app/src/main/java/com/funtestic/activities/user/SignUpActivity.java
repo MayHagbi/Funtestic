@@ -52,18 +52,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        signUpProgressDialog.setIndeterminate(true);
-        signUpProgressDialog.setMessage(getString(R.string.creating_account));
-        signUpProgressDialog.show();
 
         if(!addUserToDB()) {
             onSignUpFailed();
             return;
         }
 
-        btnSignUp.setEnabled(true);
+        signUpProgressDialog.setMessage(getResources().getString(R.string.please_wait));
+        signUpProgressDialog.show();
         finish();
-        signUpProgressDialog.dismiss();
     }
 
     public boolean validate() {
