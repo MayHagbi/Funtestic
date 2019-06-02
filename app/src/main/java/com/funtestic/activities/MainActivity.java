@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             progressDialog.setMessage(getResources().getString(R.string.bad_username_password));
             progressDialog.show();
+
         }
 
     }
