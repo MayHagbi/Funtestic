@@ -83,6 +83,33 @@ public class DataBase implements IDatabase {
     }
 
     @Override
+    public boolean login(String phone,String password){
+        jsonParam = new JSONObject();
+        try {
+            jsonParam.put("phone_number", phone);
+            jsonParam.put("password",password);
+            Thread t1 = new Thread(new Runnable() {
+                public void run() {
+                    res = Send_HTTP_Request.send(jsonParam,"/login");
+                }
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e){
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(!res.equals("")){
+            return true; //user was found
+        }
+        return false;
+    }
+
+    @Override
     public Child getChildById(String id) {
         jsonParam = new JSONObject();
         try {

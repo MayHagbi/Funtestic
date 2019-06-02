@@ -33,6 +33,9 @@ public interface IDatabase {
     //Send Report To Email
     public boolean sendReportToEmail(String childId);
 
+    //Check if user is valid for login purpose
+    public boolean login(String phone,String password);
+
 
 
 
