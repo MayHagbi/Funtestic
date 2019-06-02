@@ -207,14 +207,14 @@ public class DataBase implements IDatabase {
     }
 
     @Override
-    public boolean addUserToDb(User user ,final String token) {
+    public boolean addUserToDb(User user ) {
         try {
             jsonParam = new JSONObject(user.toString());
 
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
 
-                        res = Send_HTTP_Request.send(jsonParam,"/register/","PUT" ,token);
+                        res = Send_HTTP_Request.send(jsonParam,"/register/","PUT" ,null);
                         Log.d("TTTT","res"+res);
                 }
             });
