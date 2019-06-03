@@ -54,9 +54,9 @@ public class Send_HTTP_Request {
 
             // in case of bad request code
             if (con.getResponseCode() != 200 && con.getResponseCode() != 201) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-                Log.d("ERRORR", br.toString());
+                //BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                //TODO: print server output
+                //Log.d("ERRORR", br.toString());
                 return "";
             }
 
