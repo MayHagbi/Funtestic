@@ -86,7 +86,7 @@ public class Child implements Serializable {
             child.put("age", getAge());
             child.put("gender", getGender());
             child.put("name", getName());
-            child.put("parent", user);
+            child.put("parent_id", user.getNumber());
             return child.toString();
         }
         catch (Exception e)
