@@ -5,6 +5,11 @@ import com.funtestic.R;
 public class Validations {
 
     private static final int MIN_PASSWORD_LENGTH = 8;
+    private static final int TOKEN_2FA_LENGTH = 6;
+
+    public static boolean isValid2FATokenLength(String token){
+        return token.length() == TOKEN_2FA_LENGTH;
+    }
 
     public static boolean isEmailValid(String email) {
         return !(email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches());

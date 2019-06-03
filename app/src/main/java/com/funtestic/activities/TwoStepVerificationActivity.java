@@ -17,6 +17,8 @@ import com.funtestic.activities.mainMenu.MainMenuActivity;
 import com.funtestic.activities.report.ReportActivity;
 import com.funtestic.models.DataBase;
 
+import static com.funtestic.utilities.Validations.isValid2FATokenLength;
+
 public class TwoStepVerificationActivity extends AppCompatActivity implements View.OnClickListener {
     private Button sendButton;
     private EditText number;
@@ -48,17 +50,17 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
 
             case R.id.buttonSend2stepVerification:
                 TwoFA_pass = number.getText().toString();
+                if(!isValid2FATokenLength(TwoFA_pass)){
+                    Toast toast = Toast.makeText(getApplicationContext(), "Bad Password!", Toast.LENGTH_LONG);
+                    toast.show();
+                    return ;
+                }
                 phone=getIntent().getStringExtra("phone");
                 password=getIntent().getStringExtra("password");
 
                 token=DataBase.getInstance().TwoStepVerification(phone,password,TwoFA_pass);
                 if(token == null){
-                    //TODO ERROR
-                    Context context = getApplicationContext();
-                    CharSequence text = "WORNG CODE!!!";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Bad Password!", Toast.LENGTH_LONG);
                     toast.show();
                 }
                 else{
