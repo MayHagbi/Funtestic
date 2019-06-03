@@ -1,6 +1,8 @@
 package com.funtestic.activities.child;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.funtestic.R;
 import com.funtestic.adapters.ChildListAdapter;
 import com.funtestic.models.Child;
+import com.funtestic.models.DataBase;
 import com.funtestic.models.User;
 
 import java.io.Serializable;
@@ -23,22 +26,37 @@ import java.util.ArrayList;
 
 public class SelectChildActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
 
+    private SharedPreferences sp;
+    private User parent ;
+    private String token ;
+    private String phone;
+    private ArrayList<Child> childs = new ArrayList<Child>();
+
     private static final String TAG = "Main";
     static final int REQUEST_ADDCHILD = 0;
-
-    private ArrayList<Child> childsList;    //TODO get the list from parent
     private ChildListAdapter adapter;
     private Button btnAddChild,btnSeleChild;
 
     private ListView childListView;
     private SearchView childSearchView;
     private Child selectedChild;
-    User parent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_child_layout);
+
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        phone= sp.getString("phone","DEFAULT");
+        token= sp.getString("token", "DEFAULT");
+        parent = DataBase.getInstance().getUserByPhone(phone,token);
+        Log.d("TTTTT",parent.toString());
+
+        childs=DataBase.getInstance().getUserChildren(phone,token);
+        Log.d("TTTTT",childs.toString());
+
+
 
         childListView = (ListView) findViewById(R.id.listView);
         childSearchView = (SearchView) findViewById(R.id.searchView);
@@ -50,8 +68,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         childListView.setTextFilterEnabled(true);
         childListView.setAdapter(adapter);
 
-        childsList = new ArrayList<>();
-        adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childsList);
+        adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childs);
 
 
         childListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,11 +80,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
             }
         });
 
-        parent = (User)getIntent().getSerializableExtra("parent");
-
-        Log.d(TAG,parent.getFirst_name());
-
-        addChild();
+        //addChild();
         setupSearchView();
     }
 
@@ -93,7 +106,8 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
     @Override
     protected void onResume() {
         super.onResume();
-        ChildListAdapter adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childsList);
+        childs=DataBase.getInstance().getUserChildren(phone,token);
+        ChildListAdapter adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childs);
         childListView.setAdapter(adapter);
     }
 
@@ -101,8 +115,8 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_ADDCHILD) {
             if (resultCode == RESULT_OK) {
-                Child incomingChild = (Child)data.getSerializableExtra("child");
-                childsList.add(incomingChild);
+                childs=DataBase.getInstance().getUserChildren(phone,token);
+
             }
         }
     }
@@ -112,7 +126,6 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         switch(view.getId()) {
             case R.id.btnAddChild:
                 Intent intent = new Intent(SelectChildActivity.this, AddChildActivity.class);
-                intent.putExtra("parent", parent);
                 startActivityForResult(intent, REQUEST_ADDCHILD);
                 break;
 
@@ -135,30 +148,30 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         childSearchView.setSubmitButtonEnabled(true);
         childSearchView.setQueryHint("Search Here");
     }
-    private void addChild() {
-        //TODO add childs of the appropriate father from database to childsList
-        Child john = null;
-        Child ron = null;
-        Child mira = null;
-        Child dana = null;
-        Child mike = null;
-        try {
-            john = new Child("John", "Male", "5", "1234",parent);
-            ron = new Child("Ron", "Male", "8", "2314",parent);
-            mira = new Child("Mira", "Female", "3", "3124",parent);
-            dana = new Child("Dana", "Female", "2", "4123",parent);
-            mike = new Child("Mike", "Male", "8", "9314",parent);
-
-            childsList.add(john);
-            childsList.add(ron);
-            childsList.add(mira);
-            childsList.add(dana);
-            childsList.add(mike);
-        } catch (Exception e) {
-            e.printStackTrace();
-       }
-
-    }
+//    private void addChild() {
+//        //TODO add childs of the appropriate father from database to childsList
+//        Child john = null;
+//        Child ron = null;
+//        Child mira = null;
+//        Child dana = null;
+//        Child mike = null;
+//        try {
+//            john = new Child("John", "Male", "5", "1234",parent);
+//            ron = new Child("Ron", "Male", "8", "2314",parent);
+//            mira = new Child("Mira", "Female", "3", "3124",parent);
+//            dana = new Child("Dana", "Female", "2", "4123",parent);
+//            mike = new Child("Mike", "Male", "8", "9314",parent);
+//
+//            childsList.add(john);
+//            childsList.add(ron);
+//            childsList.add(mira);
+//            childsList.add(dana);
+//            childsList.add(mike);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//       }
+//
+//    }
 }
 
 

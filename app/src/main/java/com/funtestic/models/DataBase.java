@@ -170,16 +170,23 @@ public class DataBase implements IDatabase {
                 JSONObject parent = parseJson(json.get("parent").toString());
                 JSONObject user = parseJson(parent.get("user").toString());
 
-                User father = new User(user.get("first_name").toString(), user.get("last_name").toString(),
+                User father = new User(
+                        user.get("first_name").toString(),
+                        user.get("last_name").toString(),
                         parent.get("phone_number").toString(),
-                        user.get("email").toString(), "");
-                Child newChile =new Child(json.get("gender").toString(),json.get("age").toString()
-                        ,json.get("name").toString(),json.get("id_number").toString(),father);
+                        user.get("email").toString(),
+                        "");
 
-                return   newChile;
+                return  new Child(
+                                json.get("gender").toString(),
+                                json.get("age").toString(),
+                                json.get("name").toString(),
+                                json.get("id_number").toString(),
+                                father);
                 }
             catch (Exception e){
                 e.printStackTrace();
+                Log.d("ERROR Exception",e.toString());
                 return null;
             }
 
@@ -192,7 +199,7 @@ public class DataBase implements IDatabase {
         ArrayList<Child> childs = new ArrayList<Child>();
         jsonParam = new JSONObject();
         try {
-            jsonParam.put("phone_number", phone);
+            jsonParam.put("parent_id", phone);
             Thread t1 = new Thread(new Runnable() {
                 public void run() {
                     res = Send_HTTP_Request.send(jsonParam,"/children/get/all/","POST" ,token);
@@ -203,10 +210,13 @@ public class DataBase implements IDatabase {
                 t1.join();
             }
             catch (Exception e){
+                e.printStackTrace();
+                Log.d("ERROR Exception",e.toString());
                 return null;
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            Log.d("ERROR Exception",e.toString());
         }
         if(!res.equals("")){
             try {
@@ -216,14 +226,15 @@ public class DataBase implements IDatabase {
                     JSONObject j = (JSONObject)child_json.get(i);
                     JSONObject parent = (JSONObject)j.get("parent");
                     JSONObject user = (JSONObject)parent.get("user");
-                    Child child = new Child(j.get("id").toString(),
-                            j.get("age").toString(),
+                    Child child = new Child(
                             j.get("gender").toString(),
+                            j.get("age").toString(),
                             j.get("name").toString(),
+                            j.get("id_number").toString(),
                             new User(user.get("first_name").toString(),
                                     user.get("last_name").toString(),
-                                    user.get("email").toString(),
                                     parent.get("phone_number").toString(),
+                                    user.get("email").toString(),
                                     "" ));
                     childs.add(child);
                 }
@@ -231,11 +242,11 @@ public class DataBase implements IDatabase {
             }
             catch (Exception e){
                 e.printStackTrace();
-                Log.d("TTT:T","EXCEPTION");
+                Log.d("ERROR Exception",e.toString());
                 return null;
             }
         }
-        return null;
+        return new ArrayList<Child>();//empty array
     }
 
     @Override
@@ -247,7 +258,6 @@ public class DataBase implements IDatabase {
                 public void run() {
 
                         res = Send_HTTP_Request.send(jsonParam,"/register/","PUT" ,null);
-                        Log.d("TTTT","res"+res);
                 }
             });
             t1.start();
@@ -264,7 +274,7 @@ public class DataBase implements IDatabase {
         }
         if(res.equals(""))
         {
-            Log.d("TTTTT","FALSEEEE");
+            Log.d("ERROR ","False to add new user to Data base");
             return false;
         }
         return true;

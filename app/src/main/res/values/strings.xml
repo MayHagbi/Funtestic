@@ -71,9 +71,9 @@
     <string name="please_wait">יוצר משתמש חדש, אנא המתן...</string>
 
     <string-array name="genderList">
-        <item>זכר</item>
-        <item>נקבה</item>
-        <item>אחר</item>
+        <item>male</item>
+        <item>female</item>
+        <item>other</item>
     </string-array>
     <string-array name="category_array">
         <item>תקשורת עם הסביבה</item>

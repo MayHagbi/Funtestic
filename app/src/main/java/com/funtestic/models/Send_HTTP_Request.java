@@ -13,7 +13,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 public class Send_HTTP_Request {
-    static final String URL = "http://10.0.2.2:8001";
+    static final String URL = "http://10.0.2.2:8000";
 
     public static String send(JSONObject jsonParam, String path,String methodType,String token) {
         try {
@@ -54,6 +54,9 @@ public class Send_HTTP_Request {
 
             // in case of bad request code
             if (con.getResponseCode() != 200 && con.getResponseCode() != 201) {
+                BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+                Log.d("ERRORR", br.toString());
                 return "";
             }
 
