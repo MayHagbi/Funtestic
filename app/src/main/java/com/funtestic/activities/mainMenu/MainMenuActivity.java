@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.funtestic.R;
 import com.funtestic.activities.MainActivity;
+import com.funtestic.activities.child.SelectChildActivity;
 import com.funtestic.activities.report.ReportActivity;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
@@ -37,7 +38,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         switch(view.getId()) {
             case R.id.mainMenuStartButton:
                 finish();
-                startActivity(new Intent(getApplicationContext() , MainActivity.class));
+                startActivity(new Intent(getApplicationContext() , SelectChildActivity.class));
                 break;
 
             case R.id.mainMenuReportButton:
