@@ -1,6 +1,8 @@
 package com.funtestic.activities.child;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import com.funtestic.R;
 import com.funtestic.models.Child;
+import com.funtestic.models.DataBase;
 import com.funtestic.models.User;
 
 import java.io.Serializable;
@@ -22,7 +25,10 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
     private EditText etID;
     private Spinner genderSpinner;
     private Button btnSubChild;
-    User parent;
+    private SharedPreferences sp;
+    private User parent ;
+    private String token ;
+    private String phone;
     private static final String TAG = "Main";
 
     @Override
@@ -30,6 +36,11 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_layout);
+
+        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        phone= sp.getString("phone","DEFAULT");
+        token= sp.getString("token", "DEFAULT");
+        parent = DataBase.getInstance().getUserByPhone(phone,token);
 
         etName = (EditText) findViewById(R.id.etName);
         etAge = (EditText) findViewById(R.id.etAge);
@@ -44,7 +55,6 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(myAdapter);
 
-        parent = (User)getIntent().getSerializableExtra("parent");
     }
 
     @Override
@@ -74,11 +84,12 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
                 String gender = genderSpinner.getSelectedItem().toString();
                 String age = etAge.getText().toString();
                 String id =  etID.getText().toString();
-                child = new Child(name, gender, age, id, parent);
+                child = new Child(gender ,age,name, id, parent);
+                if(!DataBase.getInstance().addChildToDb(child,token)){
+                    //TODO ERROR!!!!
+                    Log.d("ERROR","can not insert child in to DB !!");
+                }
 
-                //TODO add incomingChild object to child database
-
-                intent.putExtra("child", child);
                 setResult(RESULT_OK, intent);
 
             } catch (Exception e) {
