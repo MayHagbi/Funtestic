@@ -45,7 +45,6 @@ build/
 .navigation
 captures/
 output.json
-build.gradle
 
 # NDK
 obj/
