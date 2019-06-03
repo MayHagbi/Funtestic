@@ -78,4 +78,5 @@
     <string-array name="category_array">
         <item>תקשורת עם הסביבה</item>
     </string-array>
+    <string name="title_activity_game">GameActivity</string>
 </resources>
