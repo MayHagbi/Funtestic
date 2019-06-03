@@ -344,7 +344,32 @@ public class DataBase implements IDatabase {
 
     @Override
     public boolean sendReportToEmail(String childId ,final String token) {
-        // TODO: send report
-        return false;
+        Log.d("TTTTcccc",childId);
+        jsonParam = new JSONObject();
+        try {
+            jsonParam.put("id_number", childId);
+            Thread t1 = new Thread(new Runnable() {
+                public void run() {
+                    res = Send_HTTP_Request.send(jsonParam,"/reports/send/","PUT" ,token);
+                    Log.d("TTTTRES",res);
+                }
+            });
+            t1.start();
+            try {
+                t1.join();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return false;
+        }
+        if(res.equals(""))
+        {
+            return false;
+        }
+        return true;
     }
 }

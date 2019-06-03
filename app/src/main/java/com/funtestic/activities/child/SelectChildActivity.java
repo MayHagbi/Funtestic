@@ -15,6 +15,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.funtestic.R;
+import com.funtestic.activities.mainMenu.SelectQuizCategory;
 import com.funtestic.adapters.ChildListAdapter;
 import com.funtestic.models.Child;
 import com.funtestic.models.DataBase;
@@ -123,16 +124,19 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch(view.getId()) {
             case R.id.btnAddChild:
-                Intent intent = new Intent(SelectChildActivity.this, AddChildActivity.class);
+                intent = new Intent(SelectChildActivity.this, AddChildActivity.class);
                 startActivityForResult(intent, REQUEST_ADDCHILD);
                 break;
 
             case R.id.btnSelectChild:
                 if (selectedChild!=null) {
-                    //TODO send selectedChild object to next activity
-                    //finish();
+
+                    intent = new Intent(SelectChildActivity.this, SelectQuizCategory.class);
+                    startActivityForResult(intent, REQUEST_ADDCHILD);
+                    break;
                 }
                 else
                     Toast.makeText(this,R.string.no_selected_child, Toast.LENGTH_LONG).show();
@@ -148,30 +152,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         childSearchView.setSubmitButtonEnabled(true);
         childSearchView.setQueryHint("Search Here");
     }
-//    private void addChild() {
-//        //TODO add childs of the appropriate father from database to childsList
-//        Child john = null;
-//        Child ron = null;
-//        Child mira = null;
-//        Child dana = null;
-//        Child mike = null;
-//        try {
-//            john = new Child("John", "Male", "5", "1234",parent);
-//            ron = new Child("Ron", "Male", "8", "2314",parent);
-//            mira = new Child("Mira", "Female", "3", "3124",parent);
-//            dana = new Child("Dana", "Female", "2", "4123",parent);
-//            mike = new Child("Mike", "Male", "8", "9314",parent);
-//
-//            childsList.add(john);
-//            childsList.add(ron);
-//            childsList.add(mira);
-//            childsList.add(dana);
-//            childsList.add(mike);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//       }
-//
-//    }
+
 }
 
 

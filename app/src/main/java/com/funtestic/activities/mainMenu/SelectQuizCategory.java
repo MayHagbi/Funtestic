@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.funtestic.R;
+import com.funtestic.activities.GameActivity;
 import com.funtestic.activities.quiz.Question1Activity;
 
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
 
     private Spinner selectCategorySpinner;
     private Button btnStartQuiz;
+    private Button btnStartGame;
+
     private ArrayAdapter<String> spinnerCategoryAdapter;
 
     @Override
@@ -28,6 +32,7 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_select_quiz_category_layout);
         selectCategorySpinner = (Spinner) findViewById(R.id.select_quiz_category_spinner);
         btnStartQuiz = (Button) findViewById(R.id.start_quiz_by_category);
+        btnStartGame = (Button) findViewById(R.id.buttonStartGame);
 
         spinnerCategoryAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
@@ -35,6 +40,7 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
         selectCategorySpinner.setAdapter(spinnerCategoryAdapter);
 
         btnStartQuiz.setOnClickListener(this);
+        btnStartGame.setOnClickListener(this);
     }
 
     private ArrayList<String> getCategoriesList() {
@@ -43,6 +49,7 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.start_quiz_by_category:
                 String category = selectCategorySpinner.getSelectedItem().toString();
@@ -51,9 +58,18 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
                     break;
                 }
 
-                Intent intent = new Intent(SelectQuizCategory.this, Question1Activity.class);
+                intent = new Intent(SelectQuizCategory.this, Question1Activity.class);
                 startActivity(intent);
                 finish();
+                break;
+
+            case R.id.buttonStartGame:
+                intent = new Intent(SelectQuizCategory.this, GameActivity.class);
+                startActivity(intent);
+                //finish();
+                break;
+
+
         }
     }
 }

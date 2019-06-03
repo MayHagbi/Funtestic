@@ -53,6 +53,7 @@ public class ReportActivity extends AppCompatActivity {
         parent = DataBase.getInstance().getUserByPhone(phone,token);
         childs=DataBase.getInstance().getUserChildren(phone,token);
         if(childs != null) {
+            childlist.add("");
             for (int i = 0; i < childs.size(); i++) {
                 childlist.add(childs.get(i).getName());
             }
@@ -79,22 +80,22 @@ public class ReportActivity extends AppCompatActivity {
                 //What to do when its pressd
 
                 //put child name on the report
+                if(position!=0) {
+                    if (DataBase.getInstance().sendReportToEmail(childs.get(position - 1).getId(), token)) {
+                        Context context = getApplicationContext();
+                        CharSequence text = "The report was successfully sent to your email";
+                        int duration = Toast.LENGTH_SHORT;
 
-                if(DataBase.getInstance().sendReportToEmail(childs.get(position).getId(),token))
-                {
-                    Context context = getApplicationContext();
-                    CharSequence text = "The report was successfully sent to your email";
-                    int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.show();
+                        finish();
+                        startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
 
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                    finish();
-                    startActivity(new Intent(getApplicationContext() , MainMenuActivity.class));
+                    } else {
+                        report.setText("");//here can chang txt in the report
+                    }
+                    //-----------------------------
                 }
-                else{
-                    report.setText("שגיאה לא ניתן לשלוח דוח");//here can chang txt in the report
-                }
-                //-----------------------------
             }
 
             @Override
