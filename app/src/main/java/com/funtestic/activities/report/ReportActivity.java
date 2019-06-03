@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,7 +34,7 @@ public class ReportActivity extends AppCompatActivity {
     private String phone;
 
     private ArrayList<Child> childs = new ArrayList<Child>();
-    private DataBase db = DataBase.getInstance();
+
     private ArrayList<String> childlist = new ArrayList<String>();
 
     private Spinner chooseChild;
@@ -49,14 +50,13 @@ public class ReportActivity extends AppCompatActivity {
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
-        parent = db.getUserByPhone(phone,token);
-        childs=db.getUserChildren(phone,token);
-
-        for(int i=0; i<childs.size() ; i++){
-            childlist.add(childs.get(i).getName());
+        parent = DataBase.getInstance().getUserByPhone(phone,token);
+        childs=DataBase.getInstance().getUserChildren(phone,token);
+        if(childs != null) {
+            for (int i = 0; i < childs.size(); i++) {
+                childlist.add(childs.get(i).getName());
+            }
         }
-
-
 
         chooseChild = (Spinner) findViewById(R.id.reportChooseChildSpinner);
         parentName= (TextView) findViewById(R.id.reportNameTextView);
@@ -64,7 +64,7 @@ public class ReportActivity extends AppCompatActivity {
 
 
         //Setting the name of the Parent.
-        parentName.setText(R.string.hello+parent.getFirst_name() +parent.getLast_name());
+        parentName.setText("Hello " +parent.getFirst_name()+" " +parent.getLast_name());
 
         //filing the spinner with names
         ArrayAdapter<String> adapter =
@@ -80,7 +80,7 @@ public class ReportActivity extends AppCompatActivity {
 
                 //put child name on the report
 
-                if(db.sendReportToEmail(childs.get(position).getId(),token))
+                if(DataBase.getInstance().sendReportToEmail(childs.get(position).getId(),token))
                 {
                     Context context = getApplicationContext();
                     CharSequence text = "The report was successfully sent to your email";
