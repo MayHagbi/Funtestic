@@ -71,7 +71,7 @@ public class DataBase implements IDatabase {
                 JSONObject user_json = (JSONObject)json.get("user");
                  User usr = new User(user_json.get("first_name").toString(), user_json.get("last_name").toString(),
                          json.get("phone_number").toString(),
-                         user_json.get("email").toString(), user_json.get("password").toString());
+                         user_json.get("email").toString(), "");
                  return usr;
             }
             catch (Exception e){
@@ -172,7 +172,7 @@ public class DataBase implements IDatabase {
 
                 User father = new User(user.get("first_name").toString(), user.get("last_name").toString(),
                         parent.get("phone_number").toString(),
-                        user.get("email").toString(), user.get("password").toString());
+                        user.get("email").toString(), "");
                 Child newChile =new Child(json.get("gender").toString(),json.get("age").toString()
                         ,json.get("name").toString(),json.get("id_number").toString(),father);
 
@@ -224,7 +224,7 @@ public class DataBase implements IDatabase {
                                     user.get("last_name").toString(),
                                     user.get("email").toString(),
                                     parent.get("phone_number").toString(),
-                                    user.get("password").toString() ));
+                                    "" ));
                     childs.add(child);
                 }
                 return childs;
