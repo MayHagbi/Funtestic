@@ -40,6 +40,7 @@
         <activity android:name=".activities.child.SelectChildActivity" />
         <activity android:name=".activities.quiz.Question1Activity" />
         <activity android:name=".activities.quiz.Question2Activity" />
+        <activity android:name=".activities.report.ReportActivity"/>
         <activity
             android:name=".activities.user.SignUpActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
