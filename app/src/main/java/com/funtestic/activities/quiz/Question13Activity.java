@@ -14,6 +14,8 @@ import com.funtestic.R;
 import com.funtestic.models.DataBase;
 import com.funtestic.models.Quiz;
 import com.funtestic.utilities.SharedConstants;
+
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class Question13Activity extends AppCompatActivity {
@@ -69,13 +71,18 @@ public class Question13Activity extends AppCompatActivity {
                     SharedConstants.scorePreferencesInitialization(sharedPrefs, answer, "question13");
 
                     gradeOfChild = calculateScore();
+                    // convert grade to string with 2 digits after the point
+                    DecimalFormat decimalFormat = new DecimalFormat("#.00");
+                    String grade = decimalFormat.format(gradeOfChild);
                     // http request
                     String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("token","DEFAULT");
-                    DataBase.getInstance().addQuizToDb(new Quiz(Float.toString(gradeOfChild),child_id),token);
+                    if(!DataBase.getInstance().addQuizToDb(new Quiz(grade,child_id),token)){
+                        Toast.makeText(Question13Activity.this, "try again", Toast.LENGTH_SHORT).show();
+                        return ;
+                    }
                     removeQuestionsScoreFromSharedPref();
-
-//                    Toast.makeText(Question13Activity.this,
-//                            child_id, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Question13Activity.this, "the quiz added successfully!", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
 

@@ -56,7 +56,7 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
         parent = DataBase.getInstance().getUserByPhone(phone,token);
         childs=DataBase.getInstance().getUserChildren(phone,token);
         if(childs != null) {
-            childlist.add("");
+            childlist.add("please select child from the list");
             for (int i = 0; i < childs.size(); i++) {
                 childlist.add(childs.get(i).getName());
             }

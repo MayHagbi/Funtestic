@@ -108,8 +108,9 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
     protected void onResume() {
         super.onResume();
         childs=DataBase.getInstance().getUserChildren(phone,token);
-        ChildListAdapter adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childs);
+        adapter = new ChildListAdapter(this, R.layout.adapter_view_child_list_layout, childs);
         childListView.setAdapter(adapter);
+
     }
 
     @Override
@@ -117,7 +118,6 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         if (requestCode == REQUEST_ADDCHILD) {
             if (resultCode == RESULT_OK) {
                 childs=DataBase.getInstance().getUserChildren(phone,token);
-
             }
         }
     }

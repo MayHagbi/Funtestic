@@ -101,7 +101,6 @@ public class DataBase implements IDatabase {
                 return false;
             }
         } catch (JSONException e) {
-            Log.d("TTTT","bulbul");
             e.printStackTrace();
             return false;
         }

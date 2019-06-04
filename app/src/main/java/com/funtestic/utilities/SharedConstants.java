@@ -1,18 +1,22 @@
 package com.funtestic.utilities;
 import android.content.SharedPreferences;
 
+import com.funtestic.R;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.transform.Result;
 
 public class SharedConstants  {
     public static final Map<String, Integer> scoreMap = new HashMap<>();
 
     static {
-        scoreMap.put("לעולם לא" , 0);
-        scoreMap.put("לעיתים נדירות" , 25);
-        scoreMap.put("לפעמים" , 50);
-        scoreMap.put("לעיתים קרובות" , 75);
-        scoreMap.put("לעיתים קרובות מאוד" , 100);
+        scoreMap.put("Never" , 0);
+        scoreMap.put("Rarely" , 25);
+        scoreMap.put("Sometimes" , 50);
+        scoreMap.put("Often" , 75);
+        scoreMap.put("Very often" , 100);
     }
 
     static public void scorePreferencesInitialization(SharedPreferences table_score_prefs, String answer, String number_of_question){
