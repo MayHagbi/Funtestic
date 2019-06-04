@@ -11,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.funtestic.R;
+import com.funtestic.models.DataBase;
+import com.funtestic.models.Quiz;
 import com.funtestic.utilities.SharedConstants;
 import java.util.Map;
 
@@ -62,7 +64,9 @@ public class Question13Activity extends AppCompatActivity {
                     SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question13");
 
                     gradeOfChild = calculateScore();
-
+                    // http request
+                    String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("child_id","DEFAULT");
+                    DataBase.getInstance().addQuizToDb(new Quiz(Float.toString(gradeOfChild),getIntent().getStringExtra("child_id")),token);
                     removeQuestionsScoreFromSharedPref();
 
                     Toast.makeText(Question13Activity.this,
