@@ -63,7 +63,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        signUpProgressDialog.dismiss();
         finish();
     }
 

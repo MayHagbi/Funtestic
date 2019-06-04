@@ -69,6 +69,7 @@
     <string name="no_selected_child">לא נבחר ילד</string>
     <string name="bad_username_password">שם משתמש או סיסמא לא נכונים, אנא נסה שנית</string>
     <string name="please_wait">יוצר משתמש חדש, אנא המתן...</string>
+    <string name="login_failed">נסיון ההתחברות נכשל</string>
 
     <string-array name="genderList">
         <item>male</item>
