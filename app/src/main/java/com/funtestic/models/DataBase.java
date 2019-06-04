@@ -101,7 +101,9 @@ public class DataBase implements IDatabase {
                 return false;
             }
         } catch (JSONException e) {
+            Log.d("TTTT","bulbul");
             e.printStackTrace();
+            return false;
         }
         if(!res.equals("")){
             return true; //user was found

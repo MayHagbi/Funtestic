@@ -107,6 +107,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
         progressDialog.show();
+        new Thread()
+        {
+            public void run()
+            {
+                try
+                {
+                    sleep(1500);
+                }
+                catch (Exception e)
+                {
+                    Log.e("tag",e.getMessage());
+                }
+                // dismiss the progress dialog
+                progressDialog.dismiss();
+            }
+        }.start();
+
 
         DataBase db = DataBase.getInstance();
 
@@ -121,16 +138,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else //bad username/password
         {
-            progressDialog.setMessage(getResources().getString(R.string.bad_username_password));
-            progressDialog.show();
+            Toast.makeText(this,R.string.login_failed, Toast.LENGTH_LONG).show();
 
         }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        progressDialog.dismiss();
+
 
     }
 
