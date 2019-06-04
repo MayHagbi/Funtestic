@@ -23,14 +23,19 @@ public class Question13Activity extends AppCompatActivity {
     private Button prev_btn;
     private RadioGroup radioGroup;
     private RadioButton choose_btn;
-    private SharedPreferences table_score_prefs;
+    private SharedPreferences sharedPrefs;
     private float gradeOfChild;
+    private String child_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question13_layout);
-        table_score_prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        child_id = sharedPrefs.getString("child_id", "DEFAULT");
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.remove("child_id");
+        editor.commit();
 
         addListenerOnButton();
     }
@@ -61,16 +66,16 @@ public class Question13Activity extends AppCompatActivity {
                     String answer = String.valueOf(choose_btn.getText());
 
                     // save score by answer in shared preferences
-                    SharedConstants.scorePreferencesInitialization(table_score_prefs, answer, "question13");
+                    SharedConstants.scorePreferencesInitialization(sharedPrefs, answer, "question13");
 
                     gradeOfChild = calculateScore();
                     // http request
-                    String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("child_id","DEFAULT");
-                    DataBase.getInstance().addQuizToDb(new Quiz(Float.toString(gradeOfChild),getIntent().getStringExtra("child_id")),token);
+                    String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("token","DEFAULT");
+                    DataBase.getInstance().addQuizToDb(new Quiz(Float.toString(gradeOfChild),child_id),token);
                     removeQuestionsScoreFromSharedPref();
 
-                    Toast.makeText(Question13Activity.this,
-                            String.valueOf(table_score_prefs.getInt("question11", -1)), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Question13Activity.this,
+//                            child_id, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -94,7 +99,7 @@ public class Question13Activity extends AppCompatActivity {
     }
 
     public float calculateScore() {
-        Map<String, ?> allEntries = table_score_prefs.getAll();
+        Map<String, ?> allEntries = sharedPrefs.getAll();
         float totalScore = 0;
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
@@ -106,7 +111,7 @@ public class Question13Activity extends AppCompatActivity {
 
     public void removeQuestionsScoreFromSharedPref() {
         String questionStr = "question";
-        SharedPreferences.Editor editor = table_score_prefs.edit();
+        SharedPreferences.Editor editor = sharedPrefs.edit();
         for(int num = 1; num <= SUM_OF_QUESTIONS; num++) {
             editor.remove(questionStr + Integer.toString(num));
         }
