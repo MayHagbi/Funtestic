@@ -51,7 +51,7 @@
     <string name="enter_email">Please enter email</string>
     <string name="email_not_valid">Email is invalid</string>
     <string name="phone_not_valid">Phone number is invalid</string>
-    <string name="please_enter_phone">Please enter phone number</string>
+    <string name="please_enter_phone">Please enter phone</string>
     <string name="checking_user_details">Checking user details, please wait...</string>
     <string name="enter_username">Please enter username</string>
     <string name="login">Login</string>
@@ -61,7 +61,7 @@
     <string name="creating_account">Creating an account..</string>
     <string name="sign_up_failed">Sign up failed</string>
     <string name="create_account">Create an account</string>
-    <string name="already_a_member_login">Already have an account? Sign here!</string>
+    <string name="already_a_member_login">Already have an account? Sign in here!</string>
     <string name="enter_first_name">Please insert first name</string>
     <string name="enter_last_name">Please insert last name</string>
     <string name="go_to_quiz">Move to quiz</string>

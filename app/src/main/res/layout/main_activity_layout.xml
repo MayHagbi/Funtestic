@@ -26,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:gravity="right"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:textDirection="anyRtl"
