@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 public class Quiz {
 
-    private DecimalFormat grade;
+    private String grade;
     private String childId;
 
     public Quiz(DecimalFormat grade,String id)
