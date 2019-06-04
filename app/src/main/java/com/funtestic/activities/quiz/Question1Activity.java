@@ -20,12 +20,28 @@ public class Question1Activity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton choose_btn;
     private SharedPreferences table_score_prefs;
+    private String child_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question1_layout);
         table_score_prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                child_id = null;
+            } else {
+                child_id = extras.getString("child_id");
+            }
+        } else {
+            child_id= (String) savedInstanceState.getSerializable("child_id");
+        }
+
+        SharedPreferences.Editor editor = table_score_prefs.edit();
+
+        editor.putString("child_id", child_id);
+        editor.commit();
 
         addListenerOnButton();
     }
@@ -60,8 +76,8 @@ public class Question1Activity extends AppCompatActivity {
 
                     openQuestion2Activity();
 
-//                    Toast.makeText(Question1Activity.this,
-//                            String.valueOf(table_score_prefs.getInt("question1", -1)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Question1Activity.this,
+                            table_score_prefs.getString("child_id", "DEFAULT"), Toast.LENGTH_SHORT).show();
                 }
             }
         });
