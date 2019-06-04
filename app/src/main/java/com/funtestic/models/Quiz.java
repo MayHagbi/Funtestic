@@ -9,17 +9,17 @@ public class Quiz {
     private String grade;
     private String childId;
 
-    public Quiz(DecimalFormat grade,String id)
+    public Quiz(String grade,String id)
     {
         this.grade = grade;
         this.childId = id;
     }
 
-    public DecimalFormat getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(DecimalFormat grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 
