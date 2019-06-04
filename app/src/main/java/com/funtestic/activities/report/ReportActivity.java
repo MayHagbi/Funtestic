@@ -104,13 +104,13 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         // send report
         if(v.getId() ==  R.id.buttonSendReport) {
-            if (currentPosition != 0) {
+            if(currentPosition == 0){
+                Toast toast = Toast.makeText(getApplicationContext(), "No child selected", Toast.LENGTH_LONG);
+                toast.show();
+            }
+            else {
                 if (DataBase.getInstance().sendReportToEmail(childs.get(currentPosition - 1).getId(), token)) {
-                    Context context = getApplicationContext();
-                    CharSequence text = "The report was successfully sent to your email";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    Toast toast = Toast.makeText(context, text, duration);
+                    Toast toast = Toast.makeText(getApplicationContext(), "The report was successfully sent to your email", Toast.LENGTH_LONG);
                     toast.show();
                     finish();
                     startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
