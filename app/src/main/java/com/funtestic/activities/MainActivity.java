@@ -125,8 +125,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             progressDialog.show();
 
         }
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         progressDialog.dismiss();
+
     }
 
     @Override
@@ -135,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String phone = userPhone.getText().toString().trim();
             String password = userPassword.getText().toString().trim();
             userLogin(phone ,password);
+
         }
 
         if(view == signupBtn )
