@@ -101,15 +101,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="@string/end_quiz"
-                android:id="@+id/submit"/>
+                android:text="@string/previous"
+                android:id="@+id/previous13"
+/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="@string/previous"
-                android:id="@+id/previous13"/>
+                android:text="@string/end_quiz"
+                android:id="@+id/submit"/>
 
         </RelativeLayout>
 

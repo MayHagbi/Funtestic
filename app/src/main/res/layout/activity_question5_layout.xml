@@ -101,15 +101,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="@string/next"
-                android:id="@+id/next5"/>
+                android:text="@string/previous"
+                android:id="@+id/previous5"
+                />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="@string/previous"
-                android:id="@+id/previous5"/>
+                android:text="@string/next"
+                android:id="@+id/next5" />
 
         </RelativeLayout>
 

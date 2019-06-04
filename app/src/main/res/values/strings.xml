@@ -77,7 +77,7 @@
         <item>other</item>
     </string-array>
     <string-array name="category_array">
-        <item>Communication with surroundings</item>
+        <item>Communication</item>
     </string-array>
     <string name="title_activity_game">GameActivity</string>
 </resources>

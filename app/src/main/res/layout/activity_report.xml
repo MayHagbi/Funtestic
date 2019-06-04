@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:paddingRight="0dp"
-        android:text="      בחר ילד"
+        android:text="Choose Child"
         android:textSize="18sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="0dp"

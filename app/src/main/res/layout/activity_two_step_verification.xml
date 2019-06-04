@@ -11,7 +11,7 @@
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="101dp"
-        android:text="הכנס את המספרים שקיבלת מהמייל :"
+        android:text="Please enter the numbers you received from mail"
         android:textAlignment="center"
         android:textSize="30sp" />
 

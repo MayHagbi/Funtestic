@@ -101,15 +101,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="@string/next"
-                android:id="@+id/next8"/>
+                android:text="@string/previous"
+                android:id="@+id/previous8"
+/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="@string/previous"
-                android:id="@+id/previous8"/>
+                android:text="@string/next"
+                android:id="@+id/next8"
+/>
 
         </RelativeLayout>
 
