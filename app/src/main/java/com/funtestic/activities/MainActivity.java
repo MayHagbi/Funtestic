@@ -2,6 +2,7 @@ package com.funtestic.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,11 +32,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText userPhone;
     private EditText userPassword;
     private ProgressDialog progressDialog;
+    public static final String PREFS_NAME = "ResumePrefs";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity_layout);
+        SharedPreferences settings = this.getSharedPreferences(PREFS_NAME,0);
+        settings.edit().clear();
+        settings.edit().commit();
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
@@ -178,4 +184,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             throw new RuntimeException(ex);
         }
     }
+
+
 }
