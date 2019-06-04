@@ -30,7 +30,7 @@ public class Quiz {
         try {
             JSONObject quiz = new JSONObject();
             quiz.put("grade", getGrade());
-            quiz.put("child",getChildId());
+            quiz.put("child_id",getChildId());
             return quiz.toString();
 
         }
