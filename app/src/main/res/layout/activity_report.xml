@@ -43,6 +43,12 @@
         tools:layout_editor_absoluteY="106dp" />
 
 
+    <Button
+        android:id="@+id/buttonSendReport"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:text="SEND" />
+
     <ScrollView
         android:id="@+id/reportScrollView"
         android:layout_width="359dp"

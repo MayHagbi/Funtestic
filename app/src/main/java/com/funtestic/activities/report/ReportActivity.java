@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import com.funtestic.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportActivity extends AppCompatActivity {
+public class ReportActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private User parent ;
@@ -40,13 +41,15 @@ public class ReportActivity extends AppCompatActivity {
     private Spinner chooseChild;
     private TextView parentName;
     private TextView report;
+    private Button sendReportButton;
+    private int currentPosition;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
-
+        currentPosition = 0;
         sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
@@ -62,6 +65,7 @@ public class ReportActivity extends AppCompatActivity {
         chooseChild = (Spinner) findViewById(R.id.reportChooseChildSpinner);
         parentName= (TextView) findViewById(R.id.reportNameTextView);
         report=(TextView) findViewById(R.id.reportTextView);
+        sendReportButton= (Button)findViewById(R.id.buttonSendReport);
 
 
         //Setting the name of the Parent.
@@ -73,29 +77,16 @@ public class ReportActivity extends AppCompatActivity {
         chooseChild.setAdapter(adapter);
         //------------------------------
 
+        // add listener on send report button
+        sendReportButton.setOnClickListener(this);
+
         //put listener on the childs-------------------------------------
         chooseChild.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //What to do when its pressd
+                currentPosition = position;
 
-                //put child name on the report
-                if(position!=0) {
-                    if (DataBase.getInstance().sendReportToEmail(childs.get(position - 1).getId(), token)) {
-                        Context context = getApplicationContext();
-                        CharSequence text = "The report was successfully sent to your email";
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
-
-                    } else {
-                        report.setText("");//here can chang txt in the report
-                    }
-                    //-----------------------------
-                }
             }
 
             @Override
@@ -109,4 +100,26 @@ public class ReportActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        // send report
+        if(v.getId() ==  R.id.buttonSendReport) {
+            if (currentPosition != 0) {
+                if (DataBase.getInstance().sendReportToEmail(childs.get(currentPosition - 1).getId(), token)) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "The report was successfully sent to your email";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
+
+                } else {
+                    report.setText("");//here can chang txt in the report
+                }
+                //-----------------------------
+            }
+        }
+    }
 }

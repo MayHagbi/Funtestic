@@ -37,16 +37,12 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         switch(view.getId()) {
             case R.id.mainMenuStartButton:
-                finish();
                 startActivity(new Intent(getApplicationContext() , SelectChildActivity.class));
                 break;
-
             case R.id.mainMenuReportButton:
-                //finish();
                 startActivity(new Intent(getApplicationContext() , ReportActivity.class));
                 break;
             case R.id.mainMenuExitButton:
-                this.finish();
                 System.exit(0);
                 break;
         }
