@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/green_color"
-        android:text="שלח"
+        android:text="Send"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold" />
