@@ -22,12 +22,12 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
-
+    
     <TextView
         android:id="@+id/reportChooseChildTextView"
         android:layout_width="114dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
+        android:layout_gravity="left"
         android:paddingRight="0dp"
         android:text="Choose Child"
         android:textSize="18sp"
@@ -39,6 +39,7 @@
         android:id="@+id/reportChooseChildSpinner"
         android:layout_width="364dp"
         android:layout_height="54dp"
+
         tools:layout_editor_absoluteX="6dp"
         tools:layout_editor_absoluteY="106dp" />
 

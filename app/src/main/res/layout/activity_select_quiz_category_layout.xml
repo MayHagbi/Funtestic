@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Please Select Quiz Category "
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
     <Spinner
         android:id="@+id/select_quiz_category_spinner"
         android:layout_width="match_parent"
