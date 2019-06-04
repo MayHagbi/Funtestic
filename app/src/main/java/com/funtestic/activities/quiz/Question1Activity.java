@@ -76,8 +76,8 @@ public class Question1Activity extends AppCompatActivity {
 
                     openQuestion2Activity();
 
-                    Toast.makeText(Question1Activity.this,
-                            table_score_prefs.getString("child_id", "DEFAULT"), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Question1Activity.this,
+//                            table_score_prefs.getString("child_id", "DEFAULT"), Toast.LENGTH_SHORT).show();
                 }
             }
         });
