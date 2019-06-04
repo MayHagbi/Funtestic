@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences settings = this.getSharedPreferences(PREFS_NAME,0);
         settings.edit().clear();
         settings.edit().commit();
+        Log.d("BABABA",settings.getString("child_id", "DEFAULT"));
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
