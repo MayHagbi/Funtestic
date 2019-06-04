@@ -63,8 +63,10 @@ public class Question13Activity extends AppCompatActivity {
 
                     gradeOfChild = calculateScore();
 
-//                    Toast.makeText(Question13Activity.this,
-//                            String.valueOf(gradeOfChild), Toast.LENGTH_SHORT).show();
+                    removeQuestionsScoreFromSharedPref();
+
+                    Toast.makeText(Question13Activity.this,
+                            String.valueOf(table_score_prefs.getInt("question11", -1)), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -89,11 +91,21 @@ public class Question13Activity extends AppCompatActivity {
 
     public float calculateScore() {
         Map<String, ?> allEntries = table_score_prefs.getAll();
-        int totalScore = 0;
+        float totalScore = 0;
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            totalScore += Integer.parseInt(entry.getValue().toString());
+            if (!(entry.getKey().equals("phone")) && !(entry.getKey().equals("token")))
+                totalScore += Integer.parseInt(entry.getValue().toString());
         }
         return totalScore / SUM_OF_QUESTIONS;
+    }
+
+    public void removeQuestionsScoreFromSharedPref() {
+        String questionStr = "question";
+        SharedPreferences.Editor editor = table_score_prefs.edit();
+        for(int num = 1; num <= SUM_OF_QUESTIONS; num++) {
+            editor.remove(questionStr + Integer.toString(num));
+        }
+        editor.commit();
     }
 }
