@@ -113,14 +113,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return ;
         };
 
-        progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
-        progressDialog.show();
         new Thread()
         {
             public void run()
             {
                 try
                 {
+
+                    progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
+                    progressDialog.show();
                     sleep(1500);
                     // do the background process or any work that takes time to see progress dialog
                 }
