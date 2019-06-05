@@ -134,7 +134,10 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
             case R.id.btnSelectChild:
                 if (selectedChild!=null) {
                     intent = new Intent(SelectChildActivity.this, SelectQuizCategory.class);
-                    intent.putExtra("child_id",selectedChild.getId());
+                    sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("child_id", selectedChild.getId());
+                    editor.commit();
                     startActivityForResult(intent, REQUEST_ADDCHILD);
                     finish();
                     break;
