@@ -24,6 +24,8 @@ import com.funtestic.models.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
+
 
 public class SelectChildActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,View.OnClickListener {
 
@@ -48,7 +50,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_child_layout);
 
-        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = this.getSharedPreferences(PREFS_NAME,0);
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
         parent = DataBase.getInstance().getUserByPhone(phone,token);
@@ -134,7 +136,7 @@ public class SelectChildActivity extends AppCompatActivity implements SearchView
             case R.id.btnSelectChild:
                 if (selectedChild!=null) {
                     intent = new Intent(SelectChildActivity.this, SelectQuizCategory.class);
-                    sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    sp = this.getSharedPreferences(PREFS_NAME,0);
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("child_id", selectedChild.getId());
                     editor.commit();

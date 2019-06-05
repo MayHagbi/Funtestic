@@ -25,6 +25,8 @@ import com.funtestic.models.User;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
+
 public class ReportActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -50,7 +52,7 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
         currentPosition = 0;
-        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = this.getSharedPreferences(PREFS_NAME,0);
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
         parent = DataBase.getInstance().getUserByPhone(phone,token);

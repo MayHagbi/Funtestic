@@ -18,6 +18,8 @@ import com.funtestic.models.User;
 
 import java.io.Serializable;
 
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
+
 
 public class AddChildActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText etName;
@@ -37,7 +39,7 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_child_layout);
 
-        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        sp = this.getSharedPreferences(PREFS_NAME,0);
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
         parent = DataBase.getInstance().getUserByPhone(phone,token);

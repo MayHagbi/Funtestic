@@ -19,6 +19,8 @@ import com.funtestic.utilities.SharedConstants;
 import java.text.DecimalFormat;
 import java.util.Map;
 
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
+
 public class Question13Activity extends AppCompatActivity {
 
     public static int SUM_OF_QUESTIONS = 13;
@@ -27,6 +29,7 @@ public class Question13Activity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton choose_btn;
     private SharedPreferences sharedPrefs;
+    SharedPreferences sp ;
     private float gradeOfChild;
     private String child_id;
 
@@ -35,11 +38,7 @@ public class Question13Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question13_layout);
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        child_id = sharedPrefs.getString("child_id", "DEFAULT");
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        editor.remove("child_id");
-        editor.commit();
-
+        sp = this.getSharedPreferences(PREFS_NAME,0);
         addListenerOnButton();
     }
 
@@ -70,17 +69,22 @@ public class Question13Activity extends AppCompatActivity {
 
                     // save score by answer in shared preferences
                     SharedConstants.scorePreferencesInitialization(sharedPrefs, answer, "question13");
-
+                    Log.d("Shared prefs:",sharedPrefs.getAll().toString());
                     gradeOfChild = calculateScore();
                     // convert grade to string with 2 digits after the point
                     DecimalFormat decimalFormat = new DecimalFormat("#.00");
                     String grade = decimalFormat.format(gradeOfChild);
+                    Log.d("grade",grade);
                     // http request
+                    child_id = sp.getString("child_id", "DEFAULT");
                     String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("token","DEFAULT");
                     if(!DataBase.getInstance().addQuizToDb(new Quiz(grade,child_id),token)){
                         Toast.makeText(Question13Activity.this, "try again", Toast.LENGTH_SHORT).show();
                         return ;
                     }
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.remove("child_id");
+                    editor.commit();
                     removeQuestionsScoreFromSharedPref();
                     Toast.makeText(Question13Activity.this, "the quiz added successfully!", Toast.LENGTH_SHORT).show();
                     finish();
