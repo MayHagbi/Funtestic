@@ -53,7 +53,7 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="374dp"
-        android:layout_marginTop="120dp"/>
+        android:layout_marginTop="80dp"/>
 
     <Button
         android:id="@+id/signupBtn"
