@@ -10,7 +10,8 @@
     android:paddingTop="0dp"
     android:paddingRight="0dp"
     android:paddingBottom="0dp"
-    tools:context=".activities.report.ReportActivity">
+    tools:context=".activities.report.ReportActivity"
+    android:background="@drawable/appbackground">
 
     <TextView
         android:id="@+id/reportNameTextView"
@@ -31,6 +32,7 @@
         android:paddingRight="0dp"
         android:text="Choose Child"
         android:textSize="18sp"
+        android:textColor="#000000"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="65dp" />
@@ -46,8 +48,9 @@
 
     <Button
         android:id="@+id/buttonSendReport"
-        android:layout_width="149dp"
-        android:layout_height="wrap_content"
+        android:layout_width="114dp"
+        android:layout_height="49dp"
+        android:background="@mipmap/button3"
         android:text="SEND" />
 
     <ScrollView

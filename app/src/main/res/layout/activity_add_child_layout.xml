@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/appbackground"
     tools:context=".activities.child.AddChildActivity">
 
     <EditText
@@ -21,7 +22,7 @@
         android:ems="10"
         android:hint="@string/enter_name"
         android:inputType="textPersonName"
-        android:textColorHint="@color/colorAccentShlomi"
+        android:textColorHint="#5C5959"
         tools:targetApi="o" />
 
     <EditText
@@ -39,7 +40,7 @@
         android:ems="10"
         android:hint="@string/enter_age"
         android:inputType="number"
-        android:textColorHint="@color/colorAccentShlomi"
+        android:textColorHint="#5C5959"
         tools:targetApi="o" />
 
     <EditText
@@ -57,7 +58,7 @@
         android:ems="10"
         android:hint="@string/enter_id"
         android:inputType="number"
-        android:textColorHint="@color/colorAccentShlomi"
+        android:textColorHint="#5C5959"
         tools:targetApi="o" />
 
     <Spinner
@@ -75,15 +76,17 @@
 
     <Button
         android:id="@+id/btnSubChild"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="135dp"
+        android:layout_height="56dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="155dp"
-        android:layout_marginLeft="155dp"
-        android:layout_marginTop="529dp"
-        android:background="@drawable/button_selector"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="131dp"
+        android:layout_marginLeft="131dp"
+        android:layout_marginTop="525dp"
+        android:layout_marginEnd="145dp"
+        android:background="@mipmap/button1"
         android:text="@string/submit" />
 
     <TextView
@@ -98,7 +101,7 @@
         android:layout_marginLeft="33dp"
         android:layout_marginTop="83dp"
         android:text="@string/child_details_text"
-        android:textColor="@color/colorPrimaryDarkShlomi"
+        android:textColorHint="#5C5959"
         android:textSize="24sp" />
 
     <TextView

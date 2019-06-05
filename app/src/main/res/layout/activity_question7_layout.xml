@@ -9,12 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layoutDirection="rtl">
+        android:background="@drawable/appbackground">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/number_of_question_7"
+            android:textColor="#000000"
             android:textSize="23sp"
             android:layout_marginBottom="30dp"
             android:id="@+id/Question7_text"/>
@@ -27,7 +28,7 @@
             android:layout_marginBottom="30dp"
             android:padding="10dp"
             android:text="@string/question_7"
-            android:textDirection="rtl"
+            android:textColor="#000000"
             android:textSize="20sp" />
 
 
@@ -98,16 +99,18 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="101dp"
+                android:layout_height="42dp"
+                android:background="@mipmap/button2"
                 android:layout_alignParentLeft="true"
                 android:text="@string/previous"
                 android:id="@+id/previous7"
 />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="101dp"
+                android:layout_height="42dp"
+                android:background="@mipmap/button1"
                 android:layout_alignParentRight="true"
 
                 android:text="@string/next"

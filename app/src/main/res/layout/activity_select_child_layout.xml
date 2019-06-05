@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/appbackground"
     tools:context=".activities.child.SelectChildActivity">
 
     <SearchView
@@ -19,19 +20,19 @@
 
     <Button
         android:id="@+id/btnAddChild"
-        android:layout_width="wrap_content"
+        android:layout_width="109dp"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="83dp"
         android:layout_marginLeft="83dp"
         android:layout_marginTop="394dp"
-        android:background="@drawable/button_selector"
+        android:background="@mipmap/button1"
         android:text="@string/add_child" />
 
     <Button
         android:id="@+id/btnSelectChild"
-        android:layout_width="wrap_content"
+        android:layout_width="109dp"
         android:layout_height="60dp"
         android:layout_alignEnd="@+id/btnAddChild"
         android:layout_alignRight="@+id/btnAddChild"
@@ -39,7 +40,8 @@
         android:layout_marginTop="393dp"
         android:layout_marginEnd="119dp"
         android:layout_marginRight="119dp"
-        android:background="@drawable/button_selector"
+        android:background="@mipmap/button1"
+
         android:text="@string/select_child" />
 
     <ListView

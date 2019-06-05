@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/appbackground"
     tools:context=".activities.TwoStepVerificationActivity">
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="101dp"
-        android:text="Please enter the numbers you received from mail"
+        android:layout_width="383dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center"
+        android:text=" Please enter the numbers\n   you received from mail"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textSize="30dp"
+        android:textStyle="bold"
+        />
 
     <EditText
         android:id="@+id/editText2stepVerification"
@@ -25,10 +29,11 @@
 
     <Button
         android:id="@+id/buttonSend2stepVerification"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/green_color"
-        android:text="Send"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/button1"
+        android:text="Submit"
+        android:layout_gravity="center"
         android:textAlignment="center"
         android:textSize="36sp"
         android:textStyle="bold" />

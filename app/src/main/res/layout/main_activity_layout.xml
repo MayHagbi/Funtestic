@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/appbackground">
 
 
     <EditText
@@ -35,12 +35,13 @@
 
     <Button
         android:id="@+id/signinBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:text="@string/login"
-        android:textStyle="bold"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="40dp"
+        android:background="@mipmap/button3"
+        android:text="@string/login"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/signUpTxt"
@@ -56,13 +57,15 @@
 
     <Button
         android:id="@+id/signupBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="137dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:background="@mipmap/button1"
         android:text="@string/signup"
         android:textStyle="bold"
+        android:layout_marginTop="5dp"
         tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="405dp"
-        android:layout_gravity="center"/>
+        tools:layout_editor_absoluteY="405dp" />
 
     <TextView
         android:id="@+id/disclaimerTxt"

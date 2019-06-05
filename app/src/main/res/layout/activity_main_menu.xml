@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background1"
+    android:background="@drawable/appbackground"
     tools:context=".activities.mainMenu.MainMenuActivity">
 
     <Button
         android:id="@+id/mainMenuStartButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="94dp"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
         android:layout_marginBottom="40dp"
+        android:background="@mipmap/button3"
         android:gravity="center"
         android:text="Start Diagnosis"
         android:textSize="24sp"
@@ -29,15 +30,17 @@
         android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="Generate report"
+        android:background="@mipmap/button1"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/mainMenuExitButton"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="89dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
+        android:background="@mipmap/button2"
         android:gravity="center"
         android:text="Exit"
         android:textSize="24sp"
