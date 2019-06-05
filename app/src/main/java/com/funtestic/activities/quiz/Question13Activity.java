@@ -71,13 +71,14 @@ public class Question13Activity extends AppCompatActivity {
                     SharedConstants.scorePreferencesInitialization(sharedPrefs, answer, "question13");
                     Log.d("Shared prefs:",sharedPrefs.getAll().toString());
                     gradeOfChild = calculateScore();
+                    Log.d("grade pure:",Float.toString(gradeOfChild));
                     // convert grade to string with 2 digits after the point
                     DecimalFormat decimalFormat = new DecimalFormat("#.00");
                     String grade = decimalFormat.format(gradeOfChild);
                     Log.d("grade",grade);
                     // http request
                     child_id = sp.getString("child_id", "DEFAULT");
-                    String token = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("token","DEFAULT");
+                    String token = sp.getString("token","DEFAULT");
                     if(!DataBase.getInstance().addQuizToDb(new Quiz(grade,child_id),token)){
                         Toast.makeText(Question13Activity.this, "try again", Toast.LENGTH_SHORT).show();
                         return ;
@@ -115,8 +116,7 @@ public class Question13Activity extends AppCompatActivity {
         float totalScore = 0;
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            if (!(entry.getKey().equals("phone")) && !(entry.getKey().equals("token")))
-                totalScore += Integer.parseInt(entry.getValue().toString());
+            totalScore += Integer.parseInt(entry.getValue().toString());
         }
         return totalScore / SUM_OF_QUESTIONS;
     }
