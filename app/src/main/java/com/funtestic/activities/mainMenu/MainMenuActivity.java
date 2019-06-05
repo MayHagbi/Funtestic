@@ -1,6 +1,7 @@
 package com.funtestic.activities.mainMenu;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,8 @@ import com.funtestic.R;
 import com.funtestic.activities.MainActivity;
 import com.funtestic.activities.child.SelectChildActivity;
 import com.funtestic.activities.report.ReportActivity;
+
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,6 +46,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(getApplicationContext() , ReportActivity.class));
                 break;
             case R.id.mainMenuExitButton:
+                SharedPreferences settings = this.getSharedPreferences(PREFS_NAME,0);
+                settings.edit().clear();
+                settings.edit().commit();
                 System.exit(0);
                 break;
         }

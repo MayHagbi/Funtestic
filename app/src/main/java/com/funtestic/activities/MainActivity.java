@@ -24,6 +24,8 @@ import org.json.JSONObject;
 
 import java.security.MessageDigest;
 
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText userPhone;
     private EditText userPassword;
     private ProgressDialog progressDialog;
-    public static final String PREFS_NAME = "ResumePrefs";
 
 
     @Override
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences settings = this.getSharedPreferences(PREFS_NAME,0);
         settings.edit().clear();
         settings.edit().commit();
-        Log.d("BABABA",settings.getString("child_id", "DEFAULT"));
 
         signinBtn = (Button) findViewById(R.id.signinBtn);
         signupBtn = (Button) findViewById(R.id.signupBtn);
@@ -111,29 +111,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return ;
         };
 
-
         progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
         progressDialog.show();
-        new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    sleep(1500);
-                }
-                catch (Exception e)
-                {
-                    Log.e("tag",e.getMessage());
-                }
-                // dismiss the progress dialog
-                progressDialog.dismiss();
-            }
-        }.start();
-
+        try {
+            // Simulate network access.
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        progressDialog.dismiss();
 
         DataBase db = DataBase.getInstance();
-
 
         if(db.login(phone,password)) //user is valid
         {

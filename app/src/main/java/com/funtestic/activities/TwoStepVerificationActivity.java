@@ -17,6 +17,7 @@ import com.funtestic.activities.mainMenu.MainMenuActivity;
 import com.funtestic.activities.report.ReportActivity;
 import com.funtestic.models.DataBase;
 
+import static com.funtestic.utilities.SharedConstants.PREFS_NAME;
 import static com.funtestic.utilities.Validations.isValid2FATokenLength;
 
 public class TwoStepVerificationActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,9 +34,7 @@ public class TwoStepVerificationActivity extends AppCompatActivity implements Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two_step_verification);
-        sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-
+        sp = this.getSharedPreferences(PREFS_NAME,0);
 
         sendButton = (Button)findViewById(R.id.buttonSend2stepVerification);
         number = (EditText) findViewById(R.id.editText2stepVerification);

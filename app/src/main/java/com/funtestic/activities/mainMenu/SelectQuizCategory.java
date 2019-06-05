@@ -23,7 +23,6 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
     private Spinner selectCategorySpinner;
     private Button btnStartQuiz;
     private Button btnStartGame;
-    private String child_id;
 
     private ArrayAdapter<String> spinnerCategoryAdapter;
 
@@ -34,8 +33,6 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
         selectCategorySpinner = (Spinner) findViewById(R.id.select_quiz_category_spinner);
         btnStartQuiz = (Button) findViewById(R.id.start_quiz_by_category);
         btnStartGame = (Button) findViewById(R.id.buttonStartGame);
-        child_id = getIntent().getStringExtra("child_id");
-
         spinnerCategoryAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1,
                 getCategoriesList());
@@ -61,7 +58,6 @@ public class SelectQuizCategory extends AppCompatActivity implements View.OnClic
                 }
 
                 intent = new Intent(SelectQuizCategory.this, Question1Activity.class);
-                intent.putExtra("child_id",child_id);
                 startActivity(intent);
                 finish();
                 break;

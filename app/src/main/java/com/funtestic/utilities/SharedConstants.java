@@ -10,6 +10,8 @@ import javax.xml.transform.Result;
 
 public class SharedConstants  {
     public static final Map<String, Integer> scoreMap = new HashMap<>();
+    public static final String PREFS_NAME = "PrivateData";
+
 
     static {
         scoreMap.put("Never" , 0);

@@ -20,7 +20,6 @@ public class Question1Activity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton choose_btn;
     private SharedPreferences table_score_prefs;
-    private String child_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
