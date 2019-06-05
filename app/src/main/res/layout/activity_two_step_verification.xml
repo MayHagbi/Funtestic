@@ -17,7 +17,7 @@
         android:ems="10"
         android:layout_marginTop="90dp"
         android:inputType="number"
-        android:hint="Please enter the numbers you received from mail"
+        android:hint="Please enter 2FA received by mail"
         android:textStyle="bold"
         android:textColorHint="#5F5C5C"
         android:textSize="18sp" />

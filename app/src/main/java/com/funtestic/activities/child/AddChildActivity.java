@@ -11,10 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.funtestic.R;
 import com.funtestic.models.Child;
 import com.funtestic.models.DataBase;
 import com.funtestic.models.User;
+import com.funtestic.utilities.Validations;
 
 import java.io.Serializable;
 
@@ -42,7 +45,7 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
         sp = this.getSharedPreferences(PREFS_NAME,0);
         phone= sp.getString("phone","DEFAULT");
         token= sp.getString("token", "DEFAULT");
-        parent = DataBase.getInstance().getUserByPhone(phone,token);
+        parent = DataBase.getInstance().getUserByPhone(phone, token);
 
         etName = (EditText) findViewById(R.id.etName);
         etAge = (EditText) findViewById(R.id.etAge);
@@ -69,34 +72,39 @@ public class AddChildActivity extends AppCompatActivity implements View.OnClickL
         switch(view.getId()) {
             case R.id.btnSubChild:
                 addChild();
-                finish();
                 break;
         }
     }
 
-    private void addChild() {
-
-        if (etAge.getText().toString().length()!=0 && etID.getText().toString().length()!=0 && etName.getText().toString().length()!=0) {
-
-            Intent intent = new Intent(AddChildActivity.this, SelectChildActivity.class);
-            Child child = null;
-
-            try {
-                String name = etName.getText().toString();
-                String gender = genderSpinner.getSelectedItem().toString();
-                String age = etAge.getText().toString();
-                String id =  etID.getText().toString();
-                child = new Child(gender ,age,name, id, parent);
-                if(!DataBase.getInstance().addChildToDb(child,token)){
-                    //TODO ERROR!!!!
-                    Log.d("ERROR","can not insert child in to DB !!");
-                }
-
+    private boolean addChild() {
+        boolean valid = true;
+        if (!Validations.isAgeValid(etAge.getText().toString())) {
+            etAge.setError("Please enter valid age");
+            valid = false;
+        }
+        if (!Validations.isIdValid(etID.getText().toString())) {
+            etID.setError("Please enter valid ID");
+            valid = false;
+        }
+        if (!Validations.isFullNameValid(etName.getText().toString())) {
+            etName.setError("Please enter valid name");
+            valid = false;
+        }
+        if (valid) {
+            String name = etName.getText().toString();
+            String gender = genderSpinner.getSelectedItem().toString();
+            String age = etAge.getText().toString();
+            String id =  etID.getText().toString();
+            Child child = new Child(gender ,age,name, id, parent);;
+            if(DataBase.getInstance().addChildToDb(child, token)){
+                Intent intent = new Intent(AddChildActivity.this, SelectChildActivity.class);
                 setResult(RESULT_OK, intent);
-
-            } catch (Exception e) {
-                e.printStackTrace();
+                finish();
+                return true;
             }
         }
+        Log.d("ERROR","can not insert child in to DB !!");
+        Toast.makeText(this, "Try again", Toast.LENGTH_LONG);
+        return false;
     }
 }
