@@ -27,7 +27,7 @@
         android:layout_height="60dp"
         android:background="@mipmap/button1"
         android:layout_gravity="center"
-        android:text="@string/go_to_quiz"/>
+        android:text="Start Quiz"/>
 
     <Button
         android:id="@+id/buttonStartGame"
