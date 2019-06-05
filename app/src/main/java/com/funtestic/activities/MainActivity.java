@@ -115,13 +115,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         progressDialog.setMessage(getResources().getString(R.string.checking_user_details));
         progressDialog.show();
-        try {
-            // Simulate network access.
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        progressDialog.dismiss();
+        new Thread()
+        {
+            public void run()
+            {
+                try
+                {
+                    sleep(1500);
+                    // do the background process or any work that takes time to see progress dialog
+                }
+                catch (Exception e)
+                {
+                    Log.e("tag",e.getMessage());
+                }
+                // dismiss the progress dialog
+                progressDialog.dismiss();
+            }
+        }.start();
 
         DataBase db = DataBase.getInstance();
 
