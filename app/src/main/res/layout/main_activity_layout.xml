@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activities.MainActivity"
-    android:background="@drawable/giladbackground">
+    android:background="@drawable/appbackground">
 
 
     <EditText
@@ -37,7 +37,7 @@
         android:id="@+id/signinBtn"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
-
+        android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:background="@mipmap/button3"
         android:text="@string/login"
