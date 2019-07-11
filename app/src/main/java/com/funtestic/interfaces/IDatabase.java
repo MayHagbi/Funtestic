@@ -33,7 +33,7 @@ public interface IDatabase {
     //Check if user is valid for login purpose
     public boolean login(String phone,String password);
 
-
-
+    //Two factor authentication
+    public String TwoStepVerification(String phone,String password , String TwoFA_pass );
 
 }
